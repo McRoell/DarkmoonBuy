@@ -2,6 +2,7 @@
 ## Title: Darkmoon Buy
 ## Author: McRoell
 ## Category: Miscellaneous
+## SavedVariablesPerCharacter: DarkmoonBuyData
 ## Notes: Buys needed crafting materials for Darkmoon Fairy crafting quests.
 ## Notes-deDE: Kauft benötigte Handwerksmaterialien für die Dunkelmond–Jahmarkt Handwerksquests.
 ## Version: 0.1
@@ -10,3 +11,4 @@
 
 #locales\Locales.xml
 darkmoonbuy.lua
+dmquestdates.lua

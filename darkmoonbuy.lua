@@ -2,12 +2,11 @@
 --[[ First blood ]]
 
 --[[Offene Punkte
-Kann ich irgendwie ermitteln, WANN ich einen Quest abgeschlossen habe.
-Wenn ich z.B.: die QuestID 29509 (Wie der Frosch knusprif wird) gestern abgeschlossen habe,
-benötige ich Heute keine Mehl. Wenn das Ganze länger als eine Woche her ist, dann
-schon eher...
+Ich weiß wann ich den Quest abgeschlossen habe (dmquestdate).
+Wenn das länger als eine woche her ist UND der Händler die Items
+hat, könnte ich fragen ob sie gekauft werden sollen
 
-Liste aller Berufsaquests: https://www.wowhead.com/de/achievement=6032/jahrmarktsgef%C3%A4lligkeiten
+Bis dahin passiert gar nichts, so lange keine /dmbuy eingibt
 ]]
 
 print("Darkmoon Buy – Items geladen.");
@@ -25,7 +24,7 @@ local function PrintMyProfessions()
     end
 end
 
--- Gibt den 7. Wert des Skillline Arrays und damit die BerufsID aus.
+-- Gibt den 7. Wert des SkillLine Arrays und damit die BerufsID aus.
 local function HasProfession(skillLine)
     for _, index in pairs({ GetProfessions() }) do
         if select(7, GetProfessionInfo(index)) == skillLine then
@@ -35,7 +34,7 @@ local function HasProfession(skillLine)
     return false
 end
 
--- item = Item-ID, count = Bedarf dieses Berufs (Zielbestände mehrerer Berufe werden addiert)
+-- item = Item-ID, count = Bedarf für diesen Beruf (Zielbestände mehrerer Berufe werden addiert)
 local RULES = {
     { profession = 171, items = {                        -- Alchemie
         { item = 1645,  count = 5 },                     -- Mondbeerensaft
@@ -102,7 +101,7 @@ SlashCmdList["DMBUY"] = function()
     for _, itemID in ipairs(order) do
         local slot = slots[itemID]
         if not slot then
-            print("Beim diesem Händler nicht verfügbar: Item-ID " .. itemID)
+            print(itemID .. " ist bei diesem Händler nicht verfügbar!")
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then
@@ -113,7 +112,7 @@ SlashCmdList["DMBUY"] = function()
     end
 
     if not bought then
-        print("Es gibt nichts aufzufüllen.")
+        print("Es gibt nichts was aufgefüllt werden müsste.")
     end
 end
 

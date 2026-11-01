@@ -1,0 +1,19 @@
+# ES ZÄHLT IMMER DER LETZTE EINTRAG
+# Mit dem * unten werden erst einmal ALLE Ordner und 
+# Verzeichnisse vom Repository ausgeschlossen.
+# Alles was hinzugefügt können werden soll, muss
+# unten definiert werden.
+# ! ist hier der Schalter dafür.
+# Mit Verzeichnisname/** werden alle Unterverieichnisse
+# und Dateien hinzugefügt.
+
+# Alles ignorieren
+*
+
+# Allowlist – diese Dateien werden doch nicht ignoriert.
+!*/
+!.gitignore
+!*.md
+!*.toc
+!*.lua
+!*.xml

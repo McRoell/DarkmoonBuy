@@ -1,0 +1,12 @@
+## Interface: 120105
+## Title: Darkmoon Buy
+## Author: McRoell
+## Category: Miscellaneous
+## Notes: Buys needed crafting materials for Darkmoon Fairy crafting quests.
+## Notes-deDE: Kauft benötigte Handwerksmaterialien für die Dunkelmond–Jahmarkt Handwerksquests.
+## Version: 0.1
+## X-Curse-Project-ID:
+## X-ReleaseDate: 2026-11-01
+
+#locales\Locales.xml
+darkmoonbuy.lua

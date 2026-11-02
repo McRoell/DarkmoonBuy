@@ -101,7 +101,8 @@ SlashCmdList["DMBUY"] = function()
     for _, itemID in ipairs(order) do
         local slot = slots[itemID]
         if not slot then
-            print(itemID .. " ist bei diesem Händler nicht verfügbar!")
+            local ItemName = C_Item.GetItemNameByID(itemID) or itemID
+            print(ItemName .. " ist bei diesem Händler nicht verfügbar!")
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then

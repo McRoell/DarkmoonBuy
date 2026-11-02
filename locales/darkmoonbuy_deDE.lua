@@ -3,12 +3,12 @@ if (GetLocale() == "deDE") then
 	print("Darkmoon Buy geladen");
 	ClientLanguage = "set";
 
-  -- Texte für dmbuy
-  NOVENDOR = "Kein Händlerfenster geöffnet";
-  NOITEM = " ist bei diesem Händler nicht verfügbar!";
-  NONEED = "Es gibt nichts was aufgefüllt werden müsste.";
+    -- Texte für dmbuy
+  NOVENDOR  = "Kein Händlerfenster geöffnet";
+  NOITEM    = " ist bei diesem Händler nicht verfügbar!";
+  NONEED    = "Es wurde nichts aufgefüllt.";
 
-  -- Textte für dmquestdate
-  NODATE = "kein Datum gespeichert";
+    -- Texte für dmquestdate
+  NODATE    = "Kein Eintrag vorhanden";
   NODATAYET = "(Noch) keine Daten vorhanden.";
 end;

@@ -3,11 +3,11 @@ if not (ClientLanguage == "set") then
 	print("Darkmoon Buy loaded");
 
     -- Texte für dmbuy
-  NOVENDOR = "Vendor window not opened";
-  NOITEM = " is not available from this vendor!";
-  NONEED = "Nothing that needs to be restocked..";
+  NOVENDOR  = "Vendor window not open.";
+  NOITEM    = " is not available from this vendor!";
+  NONEED    = "Nothing was restocked";
 
-  -- Textte für dmquestdate
-  NODATE = "No date stored";
-  NODATAYET = "No Data available (yet).";
+    -- Texte für dmquestdate
+  NODATE    = "No record available!";
+  NODATAYET = "No data available (yet).";
 end;

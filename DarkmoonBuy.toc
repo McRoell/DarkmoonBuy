@@ -3,8 +3,8 @@
 ## Author: McRoell
 ## Category: Miscellaneous
 ## SavedVariablesPerCharacter: DarkmoonBuyData
-## Notes: A handy helper for buying materials for Darkmoon Faire profession quests.
-## Notes-deDE: Kleines Helferlein für das Kaufen der Mats für die Berufsquests des Dunkelmond–Jahrmarktes.
+## Notes: A handy helper for buying materials for the Darkmoon Faire profession quests.
+## Notes-deDE: Kleines Helferlein für das Kaufen der Mats für die Berufsquests des Dunkelmond–Jahrmarkts.
 ## Version: 0.1
 ## X-Curse-Project-ID:
 ## X-ReleaseDate: 2026-11-01

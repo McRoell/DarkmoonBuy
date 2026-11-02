@@ -29,10 +29,12 @@ local function FormatEntry(questID)
     local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
     local t = DarkmoonBuyData.questDone[questID]
     if t then
+-- hier wird noch etwas Gehirnschmalz für die Lokalisierung benötigt
         local days = math.floor((time() - t) / 86400)
         return ("%s (%d): %s (vor %d Tagen)"):format(title, questID, date("%Y-%m-%d %H:%M", t), days)
+-- Ende Gehirnschmalz
     end
-    return ("%s (%d): kein Datum gespeichert"):format(title, questID)
+    return ("%s (%d): " .. NODATE):format(title, questID)
 end
 
 local f = CreateFrame("Frame")
@@ -61,7 +63,7 @@ SlashCmdList["DMQUESTDATE"] = function(msg)
             end
         end
         if not found then
-            print("(Noch) keine Daten vorhanden.")
+            print(NODATAYET)
         end
     end
 end

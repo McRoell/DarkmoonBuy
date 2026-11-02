@@ -9,6 +9,6 @@
 ## X-Curse-Project-ID:
 ## X-ReleaseDate: 2026-11-01
 
-#locales\Locales.xml
+locales\Locales.xml
 darkmoonbuy.lua
 dmquestdates.lua

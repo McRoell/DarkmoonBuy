@@ -9,9 +9,12 @@ if (GetLocale() == "deDE") then
   NONEED    = "Es wurde nichts aufgefüllt.";
 
     -- Texte für dmquestdate
-  
   FINISHED  = " abgeschlossen am %s";
   DAYAGO    = " (vor %d Tagen)";
   NODATE    = "Kein Eintrag vorhanden";
   NODATAYET = "(Noch) keine Daten vorhanden.";
+    
+    -- Texte für dmisdm
+  DMACTIVE  = "Die Dunkelmond-Jahrmarkt ist derzeit aktiv";
+  DMINACTIVE = "Die Dunkelmond-Jahrmarkt ist derzeit nicht aktiv";
 end;

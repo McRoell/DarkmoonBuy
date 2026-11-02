@@ -12,4 +12,8 @@ if not (ClientLanguage == "set") then
   DAYAGO    = " (%d days ago)";
   NODATE    = "No record available!";
   NODATAYET = "No data available (yet).";
+
+    -- Texte für dmisdm
+  DMACTIVE  = "The Darkmoon Faire is currently active";
+  DMINACTIVE = "The Darkmoon Faire is not active"; 
 end;

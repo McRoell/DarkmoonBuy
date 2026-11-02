@@ -15,6 +15,6 @@ if (GetLocale() == "deDE") then
   NODATAYET = "(Noch) keine Daten vorhanden.";
     
     -- Texte für dmisdm
-  DMACTIVE  = "Die Dunkelmond-Jahrmarkt ist derzeit aktiv";
-  DMINACTIVE = "Die Dunkelmond-Jahrmarkt ist derzeit nicht aktiv";
+  DMACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit statt";
+  DMINACTIVE = "Der Dunkelmond-Jahrmarkt findet derzeit NICHT statt";
 end;

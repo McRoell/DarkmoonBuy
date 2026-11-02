@@ -14,6 +14,6 @@ if not (ClientLanguage == "set") then
   NODATAYET = "No data available (yet).";
 
     -- Texte für dmisdm
-  DMACTIVE  = "The Darkmoon Faire is currently active";
-  DMINACTIVE = "The Darkmoon Faire is not active"; 
+  DMACTIVE  = "The Darkmoon Faire IS currently taking place";
+  DMINACTIVE = "The Darkmoon Faire is NOT taking place"; 
 end;

@@ -12,8 +12,8 @@ end
 SLASH_DMISDM1 = "/dmisdm"
 SlashCmdList["DMISDM"] = function(msg)
     if IsDarkmoonFaireActive() then
-        print("The Darkmoon Faire is currently active.");
+        print(DMACTIVE);
     else
-        print("The Darkmoon Faire is not active.");
+        print(DMINACTIVE);
     end
 end

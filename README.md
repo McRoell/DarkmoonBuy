@@ -13,4 +13,4 @@ Es prüft nicht ob überhaupt Dunkelmond ist oder ob man die Quests nicht bereit
 Im Moment noch implementiert
 * `/myprofs` gibt die aktiven Berufe des Chars aus
 * Aktuell werden die Daten (UNIX Zeit Format) gespeichert, wann ein Berufsquest zuletzt abgeschlossen wurde. Vielleicht kann man das nutzen um, zusammen mit der Info dass Dunkelmond ist, beim Händlerbesuch einen Button erscheinen zu lassen, mit dem man dann einkauft.   
-Jedenfalls gibt `/dmquestdate` die entsprechenden Daten aus. Voraussetzung ist allerdings, dass die Quests überhaupt einmal mit aktiviertem Addon einmal abgeschlossen wurden. 
+Jedenfalls gibt `/dmquestdate` die entsprechenden Daten aus. Voraussetzung ist allerdings, dass die Quests überhaupt einmal mit aktiviertem Addon abgeschlossen wurden. 

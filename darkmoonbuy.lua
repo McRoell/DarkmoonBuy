@@ -9,8 +9,6 @@ hat, könnte ich fragen ob sie gekauft werden sollen
 Bis dahin passiert gar nichts, so lange keine /dmbuy eingibt
 ]]
 
-print("Darkmoon Buy – Items geladen.");
-
 -- Abfrage welche Berufe der Char hat/kann
 -- Separate funktion (s. /myprofs)
 local function PrintMyProfessions()
@@ -90,7 +88,7 @@ end
 SLASH_DMBUY1 = "/dmbuy"
 SlashCmdList["DMBUY"] = function()
     if not MerchantFrame:IsShown() then
-        print("Kein Händlerfenster geöffnet.")
+        print(NOVENDOR)
         return
     end
 
@@ -102,7 +100,7 @@ SlashCmdList["DMBUY"] = function()
         local slot = slots[itemID]
         if not slot then
             local ItemName = C_Item.GetItemNameByID(itemID) or itemID
-            print(ItemName .. " ist bei diesem Händler nicht verfügbar!")
+            print(ItemName .. NOITEM)
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then
@@ -113,7 +111,7 @@ SlashCmdList["DMBUY"] = function()
     end
 
     if not bought then
-        print("Es gibt nichts was aufgefüllt werden müsste.")
+        print(NONEED)
     end
 end
 

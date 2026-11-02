@@ -9,6 +9,7 @@ if (GetLocale() == "deDE") then
   NONEED    = "Es wurde nichts aufgefüllt.";
 
     -- Texte für dmquestdate
+  DAYAGO    = "(vor %d Tagen)";
   NODATE    = "Kein Eintrag vorhanden";
   NODATAYET = "(Noch) keine Daten vorhanden.";
 end;

@@ -8,7 +8,8 @@ if not (ClientLanguage == "set") then
   NONEED    = "Nothing was restocked";
 
     -- Texte für dmquestdate
-  DAYAGO    = "(%d days ago)";
+  FINISHED  = " finished on %s";
+  DAYAGO    = " (%d days ago)";
   NODATE    = "No record available!";
   NODATAYET = "No data available (yet).";
 end;

@@ -29,11 +29,9 @@ local function FormatEntry(questID)
     local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
     local t = DarkmoonBuyData.questDone[questID]
     if t then
--- hier wird noch etwas Gehirnschmalz für die Lokalisierung benötigt
         local days = math.floor((time() - t) / 86400)
 --        return ("%s (%d): %s (vor %d Tagen)"):format(title, questID, date("%Y-%m-%d %H:%M", t), days)
-        return ("%s (%d): %s " .. DAYAGO):format(title, questID, date("%Y-%m-%d %H:%M", t), days)
--- Ende Gehirnschmalz
+        return ("Quest: \"%s (%d)\"" .. FINISHED .. DAYAGO):format(title, questID, date("%Y-%m-%d %H:%M", t), days)
     end
     return ("%s (%d): " .. NODATE):format(title, questID)
 end

@@ -8,6 +8,7 @@ hat, könnte ich fragen ob sie gekauft werden sollen
 
 Bis dahin passiert gar nichts, so lange keine /dmbuy eingibt
 ]]
+local _, ns = ...
 
 -- Abfrage welche Berufe der Char hat/kann
 -- Separate funktion (s. /myprofs)
@@ -85,8 +86,7 @@ local function BuildMerchantIndex()
     return slots
 end
 
-SLASH_DMBUY1 = "/dmbuy"
-SlashCmdList["DMBUY"] = function()
+ns.Buy = function()
     if not MerchantFrame:IsShown() then
         print(NOVENDOR)
         return
@@ -117,3 +117,6 @@ end
 
 SLASH_MYPROFS1 = "/myprofs"
 SlashCmdList["MYPROFS"] = PrintMyProfessions
+
+SLASH_DMBUY1 = "/dmbuy"
+SlashCmdList["DMBUY"] = ns.Buy

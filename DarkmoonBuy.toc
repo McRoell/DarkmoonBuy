@@ -13,3 +13,4 @@ locales\Locales.xml
 darkmoonbuy.lua
 dmquestdates.lua
 dmisdm.lua
+dmbuybutton.lua

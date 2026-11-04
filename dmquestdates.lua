@@ -1,6 +1,6 @@
 -- Darkmoon Buy v0.1 --
 --[[ Closed Beta ]]
-local addonName = ...
+local addonName, ns = ...
 
 -- Getrackte Quests (Reihenfolge = Reihenfolge der Ausgabe)
 local QUESTS = {
@@ -35,6 +35,24 @@ local function FormatEntry(questID)
     end
     return ("%s (%d): " .. NODATE):format(title, questID)
 end
+
+-- Tage seit dem letzten gespeicherten Abschluss, nil = keine Daten
+local function DarkmoonQuestsLastDone()
+    local done = DarkmoonBuyData and DarkmoonBuyData.questDone
+    if not done then return nil end
+
+    local newest
+    for _, id in ipairs(QUESTS) do
+        local t = done[id]
+        if t and (not newest or t > newest) then
+            newest = t
+        end
+    end
+    if not newest then return nil end
+    return math.floor((time() - newest) / 86400)
+end
+
+ns.DarkmoonQuestsLastDone = DarkmoonQuestsLastDone
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")

@@ -17,4 +17,7 @@ if (GetLocale() == "deDE") then
     -- Texte für dmisdm
   DMACTIVE    = "Der Dunkelmond-Jahrmarkt findet derzeit statt";
   DMINACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit NICHT statt";
+
+    -- Texte für dmbybutton
+  BUYBUTTONTXT = "Dunkelmond Mats Kaufen"
 end;

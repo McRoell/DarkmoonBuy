@@ -16,4 +16,6 @@ if not (ClientLanguage == "set") then
     -- Texte für dmisdm
   DMACTIVE    = "The Darkmoon Faire IS currently taking place";
   DMINACTIVE  = "The Darkmoon Faire is NOT taking place";
+    -- Texte für dmbybutton
+  BUYBUTTONTXT = "Buy Darkmoon Mats"
 end;

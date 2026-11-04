@@ -1,3 +1,5 @@
+local _, ns = ...
+
 local function IsDarkmoonFaireActive()
     local today = C_DateAndTime.GetCurrentCalendarTime().monthDay
     for i = 1, C_Calendar.GetNumDayEvents(0, today) do
@@ -8,6 +10,8 @@ local function IsDarkmoonFaireActive()
     end
     return false
 end
+
+ns.IsDarkmoonFaireActive = IsDarkmoonFaireActive
 
 SLASH_DMISDM1 = "/dmisdm"
 SlashCmdList["DMISDM"] = function(msg)

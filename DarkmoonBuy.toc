@@ -1,16 +1,19 @@
-## Interface: 120105
+## Interface: 16001, 120105     # Mit etwas Glück passt es für Retail und Forever
 ## Title: Darkmoon Buy
 ## Author: McRoell
 ## Category: Miscellaneous
 ## SavedVariablesPerCharacter: DarkmoonBuyData
 ## Notes: A handy helper for buying materials for the Darkmoon Faire profession quests.
-## Notes-deDE: Kleines Helferlein für das Kaufen der Mats für die Berufsquests des Dunkelmond–Jahrmarkts.
+## Notes-deDE: Kleines Helferlein, zum Kaufen der Mats für die Berufsquests des Dunkelmond–Jahrmarkts.
 ## Version: 0.1
 ## X-Curse-Project-ID:
-## X-ReleaseDate: 2026-11-01
+## X-ReleaseDate: 2026-11-06
 
 locales\Locales.xml
-darkmoonbuy.lua
-dmquestdates.lua
-dmisdm.lua
-dmbuybutton.lua
+#darkmoonbuy.lua
+#dmquestdates.lua
+#dmisdm.lua
+#dmbuybutton.lua
+
+dmbuyfunctions.lua
+dmbuycore.lua

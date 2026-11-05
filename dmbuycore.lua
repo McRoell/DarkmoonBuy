@@ -84,20 +84,18 @@ end
 
 -- testerrei die dazu dienen soll den Kalender zu initialisieren - FUNKTIONIERT!
 SLASH_DMCAL1 = "/dmcal"
+SlashCmdList["DMCAL"] = ns.InitializeCalendar
+--[[
 SlashCmdList["DMCAL"] = function()
-local frame = CreateFrame("Frame")
-frame:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
-
-frame:SetScript("OnEvent", function(self, event, ...)
-    if event == "CALENDAR_UPDATE_EVENT_LIST" then
-        print("Kalenderdaten erfolgreich im Hintergrund geladen!")
-        -- Hier kannst du jetzt mit C_Calendar.GetMonthInfo() o.ä. arbeiten
-        
-        -- Event optional wieder abmelden, wenn es nur einmalig gebraucht wurde
-        self:UnregisterEvent("CALENDAR_UPDATE_EVENT_LIST")
-    end
-end)
-C_Calendar.OpenCalendar()
+        local frame = CreateFrame("Frame")
+        frame:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+        frame:SetScript("OnEvent", function(self, event, ...)
+        if event == "CALENDAR_UPDATE_EVENT_LIST" then
+            print("Kalenderdaten erfolgreich im Hintergrund geladen!")
+            -- Event optional wieder abmelden, wenn es nur einmalig gebraucht wurde
+            self:UnregisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+        end
+    end)
+    C_Calendar.OpenCalendar()
 end
-
-
+--]]

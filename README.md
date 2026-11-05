@@ -17,6 +17,7 @@ Im Moment noch implementiert
 Jedenfalls gibt `/dmquestdate` die entsprechenden Daten aus. Voraussetzung ist allerdings, dass die Quests überhaupt einmal mit aktiviertem Addon abgeschlossen wurden. 
 `/dmisdm` gibt aus ob überhaupt Dunkelmond ist. Aktuell gibt es aber noch einen Bug, dass die Info erst gesichert bereit steht, wenn frt Kalender einmal geöffnet wurde. `/dmcal` soll das beheben. AKtuell als eigener Slashbefehl, zuknftig als Teil des normalen Ablaufs.
 ## Ausblick, wo hakt es noch
+- Es wird zwar richtog berechnet wie viel von einem Iten eingekauft werden muss, aber selbst wenn nichts benötigt wird gibt es die FM, dass der Händler das Item (z.B.: Mondbeersaft) nicht hat.
 - Der Code ist ein einziger Wirrwarr und muss noch aufgeräumt werden.
 - Im Moment wird noch die ItemID und nicht der Itemname ausgegeben, wenn versucht wird etwas zu kaufen, was der Händler nicht hat.
 - Wenn ein Händler keine Mats hat, die ich für meine Berufsquest benötige, muss der Button ebenfalls gar nicht erst angezeigt werden.

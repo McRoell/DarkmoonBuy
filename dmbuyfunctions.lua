@@ -55,6 +55,7 @@ local function BuildMerchantIndex()
     return slots
 end
 
+-- Funktion, die das einkaufen beim Händler übernimmt
 ns.Buy = function()
     if not MerchantFrame:IsShown() then
         print(NOVENDOR)
@@ -84,6 +85,7 @@ ns.Buy = function()
     end
 end
 
+-- Prüft ob der Dunkelmond Jahrmarkt gerade stattfindet
 local function IsDarkmoonFaireActive()
     local today = C_DateAndTime.GetCurrentCalendarTime().monthDay
     for i = 1, C_Calendar.GetNumDayEvents(0, today) do
@@ -96,6 +98,7 @@ local function IsDarkmoonFaireActive()
 end
 ns.IsDarkmoonFaireActive = IsDarkmoonFaireActive
 
+-- Wandelt die QuestID in eine lesbare Ausgabe um, inklusive Datum und Tage seit Abschluss
 local function FormatEntry(questID)
     local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
     local t = DarkmoonBuyData.questDone[questID]
@@ -152,6 +155,7 @@ f:RegisterEvent("QUEST_TURNED_IN")
 f:RegisterEvent("MERCHANT_SHOW")
 f:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" and arg1 == addonName then
+        ns.InitializeCalendar()  -- Kalenderdaten im Hintergrund laden (hoffentlich)
         DarkmoonBuyData = DarkmoonBuyData or {}
         DarkmoonBuyData.questDone = DarkmoonBuyData.questDone or {}
     elseif event == "QUEST_TURNED_IN" and ns.TRACKED[arg1] then
@@ -163,3 +167,27 @@ f:SetScript("OnEvent", function(self, event, arg1)
         button:SetShown(ShouldShow())
     end
 end)
+
+-- Kalender Tweak als Funktion
+local function InitializeCalendar()
+    local frame = CreateFrame("Frame")
+    frame:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+    frame:SetScript("OnEvent", function(self, event, ...)
+        if event == "CALENDAR_UPDATE_EVENT_LIST" then
+
+
+--[[ LÖSCHEN VOR RELEASE
+LÖSCHEN VOR RELEASE
+LÖSCHEN VOR RELEASE]]
+            print("Kalenderdaten erfolgreich im Hintergrund geladen!")
+--[[ LÖSCHEN VOR RELEASE
+LÖSCHEN VOR RELEASE
+LÖSCHEN VOR RELEASE]]
+
+
+            self:UnregisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+        end
+    end)
+    C_Calendar.OpenCalendar()
+end
+ns.InitializeCalendar = InitializeCalendar

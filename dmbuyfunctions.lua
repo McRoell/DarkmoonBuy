@@ -1,3 +1,5 @@
+-- Version 0.1.5
+
 local addonName, ns = ...
 
 -- Abfrage welche Berufe der Char hat/kann (s. /myprofs)

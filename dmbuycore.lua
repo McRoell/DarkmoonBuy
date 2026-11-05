@@ -1,3 +1,5 @@
+-- Version 0.1.5
+
 local _, ns = ...
 
 -- item = Item-ID, count = Bedarf für diesen Beruf (Zielbestände mehrerer Berufe werden addiert)

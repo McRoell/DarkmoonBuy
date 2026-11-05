@@ -1,5 +1,4 @@
-# Darkmoon Buy – Alpha (bestenfalls)
-Version: 0.1.5
+# Darkmoon Buy – Alpha (v0.1.5)
 
 Hilft die für die Berufsquests des Dunkelmond–Jahrmarkt benötigten Mats zu kaufen. 
 

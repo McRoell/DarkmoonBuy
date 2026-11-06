@@ -1,4 +1,4 @@
--- Darkmoon Buy v 0.1 --
+-- Darkmoon Buy v 0.1.5 --
 if not (ClientLanguage == "set") then
 	print("Darkmoon Buy loaded");
 

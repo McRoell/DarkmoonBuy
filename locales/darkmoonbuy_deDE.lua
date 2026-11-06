@@ -1,4 +1,4 @@
--- Darkmoon Buy v 0.1 --
+-- Darkmoon Buy v 0.1.5 --
 if (GetLocale() == "deDE") then
 	print("Darkmoon Buy geladen");
 	ClientLanguage = "set";

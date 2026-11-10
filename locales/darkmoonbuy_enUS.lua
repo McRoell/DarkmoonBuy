@@ -1,6 +1,10 @@
--- Darkmoon Buy v 0.1.5 --
-if not (ClientLanguage == "set") then
+-- Darkmoon Buy v 0.1.6 --
+if not (DMBClientLanguage == "set") then
 	print("Darkmoon Buy loaded");
+
+    -- Text for initialization
+  DMLOADED    = "Darkmoon Buy loaded";
+  DMINITCAL   = "Calendar initialized";
 
     -- Texte für dmbuy
   NOVENDOR    = "Vendor window not open.";

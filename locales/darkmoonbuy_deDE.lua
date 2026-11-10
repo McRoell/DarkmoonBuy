@@ -1,9 +1,12 @@
--- Darkmoon Buy v 0.1.5 --
+-- Darkmoon Buy v 0.1.6 --
 if (GetLocale() == "deDE") then
-	print("Darkmoon Buy geladen");
-	ClientLanguage = "set";
+	DMBClientLanguage = "set";
 
-    -- Texte für dmbuy
+  -- Text bei der Initialisierung
+  DMLOADED    = "Darkmoon Buy geladen";
+  DMINITCAL   = "Kalender initialisiert";
+
+  -- Texte für dmbuy
   NOVENDOR    = "Kein Händlerfenster geöffnet";
   NOITEM      = " ist bei diesem Händler nicht verfügbar!";
   NONEED      = "Es wurde nichts aufgefüllt.";
@@ -13,7 +16,7 @@ if (GetLocale() == "deDE") then
   DAYAGO      = " (vor %d Tagen)";
   NODATE      = "Kein Eintrag vorhanden";
   NODATAYET   = "(Noch) keine Daten vorhanden.";
-    
+
     -- Texte für dmisdm
   DMACTIVE    = "Der Dunkelmond-Jahrmarkt findet derzeit statt";
   DMINACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit NICHT statt";

@@ -30,6 +30,9 @@ ns.RULES = {
     { profession = 773, items = {                        -- Inschriftenkunde
         { item = 39354, count = 5 },                     -- Leichtes Pergament
     }},
+    { profession = 794, items = {
+        { item = 87535, count = 3 },                     -- Kiste mit fossilen Archäologiefragmenten
+    }}
 }
 --
 -- Die Berufsquests auf dem Dunkelmondjahrmarkt, für die Materialien benötigt werden.
@@ -41,4 +44,5 @@ ns.QUESTS = {
     29509,    -- Kochen; Wie der Frosch knusprig wird
     29517,    -- Lederverarbeitung; Begehrte Preise
     29520,    -- Schneiderei; Banner, überall Banner!
+    29507,    -- Archäologie; Spaß für die Kleinen!
 }

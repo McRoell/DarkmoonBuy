@@ -17,7 +17,8 @@ function ns.PrintMyProfessions()
     end
 end
 
--- Vergleicht mit dem 7. Rückgabewert (skillLine) von GetProfessionInfo
+-- Vergleicht den 7. Rückgabewert (skillLineID, im Grunde die ID des Berufs) 
+-- von GetProfessionInfo mit dem Übergebenen Wert (skillLine)
 local function HasProfession(skillLine)
     for _, index in pairs({ GetProfessions() }) do
         if select(7, GetProfessionInfo(index)) == skillLine then
@@ -27,7 +28,8 @@ local function HasProfession(skillLine)
     return false
 end
 
--- Bedarf aller gelernten Berufe je Item aufaddieren und mit dem Bestand abgleichen
+-- Bedarf aller gelernten Berufe je Item aufaddieren und mit dem Bestand abgleichen.
+-- Die Tabelle order enthält die Reihenfolge der Item-IDs, wie sie in den Regeln auftauchen.
 local function BuildTargets()
     local targets, order = {}, {}
     for _, rule in ipairs(ns.RULES) do
@@ -103,7 +105,7 @@ end
 
 -- Wandelt die QuestID der Berufsquests in eine lesbare Ausgabe um,
 -- inklusive Datum und Tage seit Abschluss (s. /dmbuy qdate)
-function ns.FormatEntry(questID)
+function ns.FormateQuestDate(questID)
     local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
     local t = DarkmoonBuyData.questDone[questID]
     if t then
@@ -246,7 +248,7 @@ end
 function ns.PrintQuestDates(msg)
     local questID = tonumber(msg)
     if questID then
-        print(ns.FormatEntry(questID))
+        print(ns.FormateQuestDate(questID))
         return
     end
 
@@ -255,7 +257,7 @@ function ns.PrintQuestDates(msg)
     local found = false
     for _, id in ipairs(ns.QUESTS) do
         if done[id] then
-            print(ns.FormatEntry(id))
+            print(ns.FormateQuestDate(id))
             found = true
         end
     end

@@ -6,7 +6,7 @@
 ## ns.buy
 das ns. irritiert mich. geht das ggf. für alle Funktionen?
 ## IsDarkmoonFaireActive
-## FormatEntry
+## FormateQuestDate
 ## DarkmoonQuestsLastDone
 ## ShouldShow
 ## CreateButton
@@ -21,7 +21,7 @@ Prüft mittels der Funktion [IsDarkmoonFaireActive](#isdarkmoonfaireactive) ob d
 ## myprofs
 Gibt mit hilfe der Funktion [PrintMyProfessions](#printmyprofessions) die vom Char erlernten Berufe aus.
 ## dmquestdate ([QuestID](#questid))
-Gibt mit Hilfe der Funktion [FormatEntry](#formatentry) das Datum aus, an dem die Quest das letzte mal abgegeben worden ist.
+Gibt mit Hilfe der Funktion [FormateQuestDate](#FormateQuestDate) das Datum aus, an dem die Quest das letzte mal abgegeben worden ist.
 Wird keine QuestID übergeben, werden dei daten Aller berufsquests ausgegeben.
 Bedingung: Das Addon muss beim (letzten) Abgeben eines Quests aktiv gewesen sein.
 ## dmcal

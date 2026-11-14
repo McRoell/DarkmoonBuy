@@ -1,4 +1,4 @@
--- Version 0.1.6
+-- Version 0.1.7
 
 local _, ns = ...
 
@@ -15,43 +15,28 @@ end
 --   /dmbuy isdm         Prüfen, ob der Jahrmarkt stattfindet
 --   /dmbuy qdate [id]   Abschlussdatum einer Quest (ohne id: alle)
 --   /dmbuy profs        Berufe des Charakters ausgeben
+--   /dmbuy button [mode] Anzeigemodus des Buttons (always|instock|inneed)
 --
 
-local function PrintIsDarkmoonFaire()
-    if ns.IsDarkmoonFaireActive() then
-        print(DMACTIVE)
-    else
-        print(DMINACTIVE)
-    end
-end
-
-local function PrintQuestDates(msg)
-    local questID = tonumber(msg)
-    if questID then
-        print(ns.FormatEntry(questID))
+local function SetButtonMode(msg)
+    local mode = strtrim(msg or ""):lower()
+    if mode == "" then
+        print(BUTTONMODE .. ns.GetButtonMode())
         return
     end
-
-    -- Ohne gefundene Daten (Addon neu, Beruf gewechselt) einmal NODATAYET ausgeben.
-    local done = DarkmoonBuyData.questDone
-    local found = false
-    for _, id in ipairs(ns.QUESTS) do
-        if done[id] then
-            print(ns.FormatEntry(id))
-            found = true
-        end
-    end
-
-    if not found then
-        print(NODATAYET)
+    if ns.SetButtonMode(mode) then
+        print(BUTTONMODE .. mode)
+    else
+        print(BUTTONMODEUNKNOWN .. mode)
     end
 end
 
 local handlers = {
-    cal   = function() ns.InitializeCalendar() end,
-    isdm  = PrintIsDarkmoonFaire,
-    qdate = PrintQuestDates,
-    profs = function() ns.PrintMyProfessions() end,
+    cal    = function() ns.InitializeCalendar() end,
+    isdm   = function() ns.PrintIsDarkmoonFaire() end,
+    qdate  = function(msg) ns.PrintQuestDates(msg) end,
+    profs  = function() ns.PrintMyProfessions() end,
+    button = SetButtonMode,
 }
 
 SLASH_DMBUY1 = "/dmbuy"

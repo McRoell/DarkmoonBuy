@@ -22,5 +22,9 @@ if not (DMBClientLanguage == "set") then
   DMINACTIVE  = "The Darkmoon Faire is NOT taking place";
     
   -- Texte für dmbybutton
-  BUYBUTTONTXT = "Buy Darkmoon\nFaire materials"
+  BUYBUTTONTXT = "Buy Darkmoon\nFaire materials";
+
+    -- Texte für /dmbuy button
+  BUTTONMODE        = "Button display mode: ";
+  BUTTONMODEUNKNOWN = "Unknown mode: ";
 end;

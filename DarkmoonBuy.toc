@@ -7,7 +7,7 @@
 ## Notes-deDE: Kleines Helferlein, zum Kaufen der Mats für die Berufsquests des Dunkelmond-Jahrmarkts.
 ## Version: 0.1.6
 ## X-Curse-Project-ID:
-## X-ReleaseDate: 2026-11-10
+## X-ReleaseDate: 2026-11-06
 
 locales\Locales.xml
 dmbuyfunctions.lua

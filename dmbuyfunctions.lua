@@ -1,4 +1,4 @@
--- Version 0.1.6
+-- Version 0.1.7
 
 local addonName, ns = ...
 
@@ -132,12 +132,82 @@ end
 -- Button am Händlerfenster
 local button
 
+--
+-- Anzeigemodus des Buttons (s. /dmbuy button)
+--
+--   "always"  Button erscheint immer, sobald die Grundbedingung erfüllt ist
+--   "instock" Button zusätzlich nur, wenn der Händler ein Regel-Item führt
+--   "inneed"  wie "instock", zusätzlich muss bei einem Item Bedarf bestehen
+--
+local BUTTON_MODES = { always = true, instock = true, inneed = true }
+local DEFAULT_BUTTON_MODE = "inneed"
+
+function ns.GetButtonMode()
+    local mode = DarkmoonBuyData and DarkmoonBuyData.buttonMode
+    if BUTTON_MODES[mode] then
+        return mode
+    end
+    return DEFAULT_BUTTON_MODE
+end
+
+function ns.SetButtonMode(mode)
+    if not BUTTON_MODES[mode] then
+        return false
+    end
+    DarkmoonBuyData.buttonMode = mode
+    return true
+end
+
+-- Prüft, ob der Händler mindestens ein Regel-Item führt und ob darauf Bedarf besteht.
+-- Liefert drei Werte: hatItem, hatBedarf, gelesen.
+-- "gelesen" ist false, wenn das Sortiment noch nicht auswertbar war.
+local function CheckStock()
+    local targets, order = BuildTargets()
+    if #order == 0 then
+        return false, false, false
+    end
+
+    local slots = BuildMerchantIndex()
+    if not next(slots) then
+        return false, false, false
+    end
+
+    local hasItem, hasNeed = false, false
+    for _, itemID in ipairs(order) do
+        if slots[itemID] then
+            hasItem = true
+            if targets[itemID] - C_Item.GetItemCount(itemID) > 0 then
+                hasNeed = true
+            end
+        end
+    end
+    return hasItem, hasNeed, true
+end
+
 local function ShouldShow()
+    -- Grundbedingung: Jahrmarkt aktiv und letzte Abgabe länger als 6 Tage her.
     if not ns.IsDarkmoonFaireActive() then
         return false
     end
     local days = DarkmoonQuestsLastDone()
-    return days == nil or days > 6
+    if not (days == nil or days > 6) then
+        return false
+    end
+
+    local mode = ns.GetButtonMode()
+    if mode == "always" then
+        return true
+    end
+
+    local hasItem, hasNeed, read = CheckStock()
+    if not read then
+        -- Sortiment noch nicht auswertbar: Button nicht verstecken.
+        return true
+    end
+    if mode == "instock" then
+        return hasItem
+    end
+    return hasItem and hasNeed
 end
 
 local function CreateButton()
@@ -161,6 +231,38 @@ function ns.InitializeCalendar()
         end
     end)
     C_Calendar.OpenCalendar()
+end
+
+-- Die Print-Funktionen der Slash-Befehle (s. /dmbuy isdm, /dmbuy qdate)
+
+function ns.PrintIsDarkmoonFaire()
+    if ns.IsDarkmoonFaireActive() then
+        print(DMACTIVE)
+    else
+        print(DMINACTIVE)
+    end
+end
+
+function ns.PrintQuestDates(msg)
+    local questID = tonumber(msg)
+    if questID then
+        print(ns.FormatEntry(questID))
+        return
+    end
+
+    -- Ohne gefundene Daten (Addon neu, Beruf gewechselt) einmal NODATAYET ausgeben.
+    local done = DarkmoonBuyData.questDone
+    local found = false
+    for _, id in ipairs(ns.QUESTS) do
+        if done[id] then
+            print(ns.FormatEntry(id))
+            found = true
+        end
+    end
+
+    if not found then
+        print(NODATAYET)
+    end
 end
 
 -- Initialisierung des Addons beim Laden

@@ -30,10 +30,10 @@ if not (DMBClientLanguage == "set") then
 
     -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
   HELPTITLE  = "Darkmoon Buy - Commands:";
-  HELPBUY    = "  /dmbuy buy           Buy materials from the vendor";
-  HELPCAL    = "  /dmbuy cal           Initialize the calendar";
-  HELPISDM   = "  /dmbuy isdm          Check whether the Faire is taking place";
-  HELPQDATE  = "  /dmbuy qdate [id]    Completion date of a quest (without id: all)";
-  HELPPROFS  = "  /dmbuy profs         Print the character's professions";
-  HELPBUTTON = "  /dmbuy button [mode] Button display mode (off | always | instock | inneed)";
+  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy materials from the vendor";
+  HELPCAL    = "  |cffb960fe/dmbuy cal|r - Initialize the calendar";
+  HELPISDM   = "  |cffb960fe/dmbuy isdm|r - Check whether the Faire is taking place";
+  HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Completion date of a quest (without id: all)";
+  HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Print the character's professions";
+  HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Button display mode (off | always | instock | inneed)";
 end;

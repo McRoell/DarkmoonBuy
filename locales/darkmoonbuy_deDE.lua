@@ -1,4 +1,4 @@
--- Darkmoon Buy v 0.1.6 --
+-- Darkmoon Buy v 0.1.7 --
 if (GetLocale() == "deDE") then
 	DMBClientLanguage = "set";
 

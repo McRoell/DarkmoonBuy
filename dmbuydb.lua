@@ -1,4 +1,4 @@
--- Version 0.1.6
+-- Version 0.1.7
 -- Datenbank ist vielleicht etwas hoch gegriffen, aber irgendwie ist das hier doch eine. :)
 
 local _, ns = ...

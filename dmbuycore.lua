@@ -10,7 +10,8 @@ end
 --
 -- Slash-Befehle. Ein Befehl, mehrere Argumente.
 --
---   /dmbuy              Einkauf beim Händler (wie bisher)
+--   /dmbuy              ohne Argumente Ausgabe der Argumente und was sie bewirken – analog zu Usage
+--   /dmbuy buy          Einkauf beim Händler (wie bisher)
 --   /dmbuy cal          Kalender initialisieren
 --   /dmbuy isdm         Prüfen, ob der Jahrmarkt stattfindet
 --   /dmbuy qdate [id]   Abschlussdatum einer Quest (ohne id: alle)

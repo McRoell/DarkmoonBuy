@@ -35,5 +35,5 @@ if (GetLocale() == "deDE") then
   HELPISDM   = "  /dmbuy isdm          Prüfen, ob der Jahrmarkt stattfindet";
   HELPQDATE  = "  /dmbuy qdate [id]    Abschlussdatum einer Quest (ohne id: alle)";
   HELPPROFS  = "  /dmbuy profs         Berufe des Charakters ausgeben";
-  HELPBUTTON = "  /dmbuy button [mode] Anzeigemodus des Buttons (off|always|instock|inneed)";
+  HELPBUTTON = "  /dmbuy button [mode] Anzeigemodus des Buttons (off | always | instock | inneed)";
 end

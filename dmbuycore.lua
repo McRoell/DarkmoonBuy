@@ -1,4 +1,4 @@
--- Version 0.1.7
+-- Version 0.1.8
 
 local _, ns = ...
 
@@ -10,14 +10,24 @@ end
 --
 -- Slash-Befehle. Ein Befehl, mehrere Argumente.
 --
---   /dmbuy              ohne Argumente Ausgabe der Argumente und was sie bewirken – analog zu Usage
---   /dmbuy buy          Einkauf beim Händler (wie bisher)
+--   /dmbuy              Befehlsübersicht ausgeben
+--   /dmbuy buy          Einkauf beim Händler
 --   /dmbuy cal          Kalender initialisieren
 --   /dmbuy isdm         Prüfen, ob der Jahrmarkt stattfindet
 --   /dmbuy qdate [id]   Abschlussdatum einer Quest (ohne id: alle)
 --   /dmbuy profs        Berufe des Charakters ausgeben
 --   /dmbuy button [mode] Anzeigemodus des Buttons (always|instock|inneed)
 --
+
+local function Usage()
+    print(HELPTITLE)
+    print(HELPBUY)
+    print(HELPCAL)
+    print(HELPISDM)
+    print(HELPQDATE)
+    print(HELPPROFS)
+    print(HELPBUTTON)
+end
 
 local function SetButtonMode(msg)
     local mode = strtrim(msg or ""):lower()
@@ -33,6 +43,7 @@ local function SetButtonMode(msg)
 end
 
 local handlers = {
+    buy    = function() ns.Buy() end,
     cal    = function() ns.InitializeCalendar() end,
     isdm   = function() ns.PrintIsDarkmoonFaire() end,
     qdate  = function(msg) ns.PrintQuestDates(msg) end,
@@ -46,10 +57,10 @@ SlashCmdList["DMBUY"] = function(msg)
     local cmd, rest = msg:match("^(%S*)%s*(.*)$")
     cmd = cmd:lower()
 
-    local handler = cmd ~= "" and handlers[cmd]
+    local handler = handlers[cmd]
     if handler then
         handler(rest)
     else
-        ns.Buy()
+        Usage()
     end
 end

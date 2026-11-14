@@ -1,4 +1,4 @@
--- Darkmoon Buy v 0.1.7 --
+-- Darkmoon Buy v 0.1.8 --
 if (GetLocale() == "deDE") then
 	DMBClientLanguage = "set";
 
@@ -27,4 +27,13 @@ if (GetLocale() == "deDE") then
     -- Texte für /dmbuy button
   BUTTONMODE        = "Anzeigemodus des Buttons: ";
   BUTTONMODEUNKNOWN = "Unbekannter Modus: ";
-end;
+
+    -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
+  HELPTITLE  = "Darkmoon Buy - Befehle:";
+  HELPBUY    = "  /dmbuy buy           Materialien beim Händler einkaufen";
+  HELPCAL    = "  /dmbuy cal           Kalender initialisieren";
+  HELPISDM   = "  /dmbuy isdm          Prüfen, ob der Jahrmarkt stattfindet";
+  HELPQDATE  = "  /dmbuy qdate [id]    Abschlussdatum einer Quest (ohne id: alle)";
+  HELPPROFS  = "  /dmbuy profs         Berufe des Charakters ausgeben";
+  HELPBUTTON = "  /dmbuy button [mode] Anzeigemodus des Buttons (always|instock|inneed)";
+end

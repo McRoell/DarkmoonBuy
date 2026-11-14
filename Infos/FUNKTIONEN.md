@@ -13,7 +13,7 @@ Dokumentation des Ist-Stands. Beschrieben sind alle Funktionen der drei Lua-Date
 
 Ladereihenfolge laut `DarkmoonBuy.toc`: `locales\Locales.xml`, dann `dmbuyfunctions.lua`, dann `dmbuydb.lua`, dann `dmbuycore.lua`.
 
-Die beiden Dateien `dmbuydb.lua` und `dmbuyfunctions.lua` tragen in ihrem Kopf noch die Versionsangabe `0.1.7`. Das ist eine reine Kommentarzeile ohne Wirkung auf den Ablauf.
+Alle Dateien tragen in ihrem Kopf die Versionsangabe `0.1.7`. Die Angaben sind reine Kommentarzeilen ohne Wirkung auf den Ablauf.
 
 ## Die Datentabellen in dmbuydb.lua
 

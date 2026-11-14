@@ -23,4 +23,3 @@ To keep the button from getting in your way, it is not shown if the profession q
 ## And everything else (AKA Developer Tools)
 Not yet implemented:
 * Passing the next vendor to TomTom.
-* Usage output when /dmbuy is called without parameters. Currently, it tries to buy things. This dates back to the time before the button existed.

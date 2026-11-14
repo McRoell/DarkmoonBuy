@@ -1,4 +1,4 @@
--- Version 0.1.7
+-- Version 0.1.8
 
 local addonName, ns = ...
 
@@ -137,11 +137,12 @@ local button
 --
 -- Anzeigemodus des Buttons (s. /dmbuy button)
 --
+--   "off"     Button wird nie angezeigt, Einkauf nur über /dmbuy buy
 --   "always"  Button erscheint immer, sobald die Grundbedingung erfüllt ist
 --   "instock" Button zusätzlich nur, wenn der Händler ein Regel-Item führt
 --   "inneed"  wie "instock", zusätzlich muss bei einem Item Bedarf bestehen
 --
-local BUTTON_MODES = { always = true, instock = true, inneed = true }
+local BUTTON_MODES = { off = true, always = true, instock = true, inneed = true }
 local DEFAULT_BUTTON_MODE = "inneed"
 
 function ns.GetButtonMode()
@@ -197,6 +198,9 @@ local function ShouldShow()
     end
 
     local mode = ns.GetButtonMode()
+    if mode == "off" then
+        return false
+    end
     if mode == "always" then
         return true
     end

@@ -35,5 +35,5 @@ if not (DMBClientLanguage == "set") then
   HELPISDM   = "  /dmbuy isdm          Check whether the Faire is taking place";
   HELPQDATE  = "  /dmbuy qdate [id]    Completion date of a quest (without id: all)";
   HELPPROFS  = "  /dmbuy profs         Print the character's professions";
-  HELPBUTTON = "  /dmbuy button [mode] Button display mode (always|instock|inneed)";
+  HELPBUTTON = "  /dmbuy button [mode] Button display mode (off|always|instock|inneed)";
 end;

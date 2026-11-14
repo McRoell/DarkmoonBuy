@@ -23,4 +23,3 @@ Damit der Button nicht ständig rumnervt, wird er nicht angezeigt, wenn die Beru
 ## und sonst so (AKA Developer Tools)
 Im Moment noch nicht implementiert
 * Übergabe des nächsten Händlers an TomTom.
-* Usage Ausgabe wenn /dmbuy ohen Parameter aufgerufen wird. Im Moment wird versucht Dinge zu kaufen. Stammt noch aus der Zeit ohne Button.

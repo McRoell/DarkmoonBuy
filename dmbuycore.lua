@@ -1,4 +1,4 @@
--- Version 0.1.8
+-- Version 1.0
 
 local _, ns = ...
 
@@ -6,18 +6,6 @@ ns.CRAFTQUESTS = {}
 for _, quest in ipairs(ns.QUESTS) do
     ns.CRAFTQUESTS[quest.id] = true
 end
-
---
--- Slash-Befehle. Ein Befehl, mehrere Argumente.
---
---   /dmbuy              Befehlsübersicht ausgeben
---   /dmbuy buy          Einkauf beim Händler
---   /dmbuy cal          Kalender initialisieren
---   /dmbuy isdm         Prüfen, ob der Jahrmarkt stattfindet
---   /dmbuy qdate [id]   Abschlussdatum einer Quest (ohne id: alle)
---   /dmbuy profs        Berufe des Charakters ausgeben
---   /dmbuy button [mode] Anzeigemodus des Buttons (off|always|instock|inneed)
---
 
 local function Usage()
     print(HELPTITLE)

@@ -30,7 +30,7 @@ if not (DMBClientLanguage == "set") then
 
     -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
   HELPTITLE  = "Darkmoon Buy - Commands:";
-  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy beeded crafting materials from the vendor";
+  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy needed crafting materials from the vendor";
   HELPCAL    = "  |cffb960fe/dmbuy cal|r - Initialize the calendar (development option)";
   HELPISDM   = "  |cffb960fe/dmbuy isdm|r - Check whether the Faire is taking place";
   HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Completion date of the Faire professions quest (without id all are shown)";

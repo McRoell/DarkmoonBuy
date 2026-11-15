@@ -19,7 +19,7 @@ if not (DMBClientLanguage == "set") then
 
     -- Texte für dmisdm
   DMACTIVE    = "The Darkmoon Faire IS currently taking place";
-  DMINACTIVE  = "The Darkmoon Faire is NOT taking place";
+  DMINACTIVE  = "The Darkmoon Faire is |cffff0000NOT|r taking place";
     
   -- Texte für dmbybutton
   BUYBUTTONTXT = "Buy Darkmoon\nFaire materials";
@@ -30,10 +30,10 @@ if not (DMBClientLanguage == "set") then
 
     -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
   HELPTITLE  = "Darkmoon Buy - Commands:";
-  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy materials from the vendor";
-  HELPCAL    = "  |cffb960fe/dmbuy cal|r - Initialize the calendar";
+  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy beeded crafting materials from the vendor";
+  HELPCAL    = "  |cffb960fe/dmbuy cal|r - Initialize the calendar (development option)";
   HELPISDM   = "  |cffb960fe/dmbuy isdm|r - Check whether the Faire is taking place";
-  HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Completion date of a quest (without id: all)";
+  HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Completion date of the Faire professions quest (without id all are shown)";
   HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Print the character's professions";
   HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Button display mode (off | always | instock | inneed)";
 end;

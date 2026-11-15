@@ -1,10 +1,9 @@
--- Version 0.1.8
+-- Version 1.0
 
 local addonName, ns = ...
 
 --
--- Abfrage welche Berufe der Char hat/kann (s. /dmbuy profs)
--- Die fünf Slots werden der Reihe nach durchgegangen und deren Name ausgegeben.
+-- Query which professions the character has/knows (see /dmbuy profs)
 --
 function ns.PrintMyProfessions()
     local profs = { GetProfessions() }
@@ -17,8 +16,8 @@ function ns.PrintMyProfessions()
     end
 end
 
--- Vergleicht den 7. Rückgabewert (skillLineID, im Grunde die ID des Berufs) 
--- von GetProfessionInfo mit dem Übergebenen Wert (skillLine)
+-- Compares the 7th return value (skillLineID, basically the ID of the profession)
+-- of GetProfessionInfo with the passed value (skillLine)
 local function HasProfession(skillLine)
     for _, index in pairs({ GetProfessions() }) do
         if select(7, GetProfessionInfo(index)) == skillLine then
@@ -28,8 +27,7 @@ local function HasProfession(skillLine)
     return false
 end
 
--- Meldet einmalig, wenn der Charakter gar keinen Beruf gelernt hat.
--- GetProfessions() liefert dann eine leere Liste, alle Regeln greifen nicht.
+-- In case no professions has been learned
 local noProfessionReported = false
 
 local function CheckAnyProfession()
@@ -43,10 +41,8 @@ local function CheckAnyProfession()
     return true
 end
 
--- Bedarf aller gelernten Berufe je Item aufaddieren und mit dem Bestand abgleichen.
--- Die Tabelle order enthält die Reihenfolge der Item-IDs, wie sie in den Regeln auftauchen.
+-- Add up the needs of all learned professions per item and compare them with the current stock.
 local function BuildTargets()
-    -- Ohne gelernten Beruf greift keine Regel; einmalig melden statt still nichts zu tun.
     if not CheckAnyProfession() then
         return {}, {}
     end
@@ -66,7 +62,7 @@ local function BuildTargets()
     return targets, order
 end
 
--- Liefert die Questtabelle zu einer ID (oder nil).
+-- Returns the quest table for a given ID (or nil).
 local function FindQuest(questID)
     for _, quest in ipairs(ns.QUESTS) do
         if quest.id == questID then
@@ -76,7 +72,7 @@ local function FindQuest(questID)
     return nil
 end
 
--- Slot-Nummer je Item-ID beim aktuellen Händler
+-- Slot# per ItemID at vendor
 local function BuildMerchantIndex()
     local slots = {}
     for i = 1, GetMerchantNumItems() do
@@ -89,7 +85,7 @@ local function BuildMerchantIndex()
     return slots
 end
 
--- Funktion, die das Einkaufen beim Händler übernimmt (s. /dmbuy)
+-- let's buy (s. /dmbuy)
 function ns.Buy()
     if not MerchantFrame:IsShown() then
         print(NOVENDOR)
@@ -108,9 +104,9 @@ function ns.Buy()
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then
-                -- BuyMerchantItem meldet keinen Erfolg zurück. Deshalb wird der
-                -- Bestand vor und nach dem Kauf verglichen: bleibt er gleich,
-                -- war die Tasche voll (oder das Sortiment hat sich geändert).
+                -- BuyMerchantItem does not report success. Therefore the
+                -- stock is compared before and after the purchase: if it stays the same,
+                -- the bag was full (or the vendor's inventory has changed).
                 local before = C_Item.GetItemCount(itemID)
                 BuyMerchantItem(slot, missing)
                 local after = C_Item.GetItemCount(itemID)
@@ -130,8 +126,7 @@ function ns.Buy()
     end
 end
 
--- Prüft, ob der Dunkelmond-Jahrmarkt gerade stattfindet (s. /dmbuy isdm)
--- TODO: Vor dem Release den Dev-Modus entfernen, damit der Kalenderwert gilt.
+-- Checks if Darkmoon Faire is taking place (s. /dmbuy isdm)
 function ns.IsDarkmoonFaireActive()
     local today = C_DateAndTime.GetCurrentCalendarTime().monthDay
     for i = 1, C_Calendar.GetNumDayEvents(0, today) do
@@ -141,12 +136,11 @@ function ns.IsDarkmoonFaireActive()
         end
     end
     return false
-    -- return true -- DEV-MODUS: immer aktiv
+    -- return true -- Dev mode, permanent faire
 end
 
--- Wandelt die QuestID der Berufsquests in eine lesbare Ausgabe um,
--- inklusive Datum und Tage seit Abschluss (s. /dmbuy qdate)
--- Der Titel kommt aus ns.QUESTS; unbekannte IDs werden als solche gemeldet.
+-- Converts the QuestID of the profession quests into a readable output,
+-- including the date and days since completion (see /dmbuy qdate)
 function ns.FormateQuestDate(questID)
     local quest = FindQuest(questID)
     local title = quest and quest.title or UNKNOWNQUEST
@@ -158,7 +152,7 @@ function ns.FormateQuestDate(questID)
     return ("%s (%d): " .. NODATE):format(title, questID)
 end
 
--- Tage seit dem letzten gespeicherten Abschluss, nil = keine Daten
+-- Days since the quest has last tunend in. nil = no data
 local function DarkmoonQuestsLastDone()
     local done = DarkmoonBuyData and DarkmoonBuyData.questDone
     if not done then return nil end
@@ -174,16 +168,11 @@ local function DarkmoonQuestsLastDone()
     return math.floor((time() - newest) / 86400)
 end
 
--- Button am Händlerfenster
+-- The Button on the vendor frame
 local button
 
 --
--- Anzeigemodus des Buttons (s. /dmbuy button)
---
---   "off"     Button wird nie angezeigt, Einkauf nur über /dmbuy buy
---   "always"  Button erscheint immer, sobald die Grundbedingung erfüllt ist
---   "instock" Button zusätzlich nur, wenn der Händler ein Regel-Item führt
---   "inneed"  wie "instock", zusätzlich muss bei einem Item Bedarf bestehen
+-- Display Mode of the Button (s. /dmbuy button)
 --
 local BUTTON_MODES = { off = true, always = true, instock = true, inneed = true }
 local DEFAULT_BUTTON_MODE = "inneed"

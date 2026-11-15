@@ -10,6 +10,8 @@ if not (DMBClientLanguage == "set") then
   NOVENDOR    = "Vendor window not open.";
   NOITEM      = " is not available from this vendor!";
   NONEED      = "Nothing was restocked";
+  NOBAGSPACE  = " – no space in bags, purchase aborted!";
+  NOPROFESSION = "No suitable professions learned - there is nothing to buy.";
 
     -- Texte für dmquestdate
   FINISHED    = " finished on %s";

@@ -10,6 +10,8 @@ if (GetLocale() == "deDE") then
   NOVENDOR    = "Kein Händlerfenster geöffnet";
   NOITEM      = " ist bei diesem Händler nicht verfügbar!";
   NONEED      = "Es wurde nichts aufgefüllt.";
+  NOBAGSPACE  = " – kein Platz in den Taschen, Kauf abgebrochen!";
+  NOPROFESSION = "Keine passenden Berufe gelernt - es gibt nichts einzukaufen.";
 
     -- Texte für dmquestdate
   FINISHED    = " abgeschlossen am %s";

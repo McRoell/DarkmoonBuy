@@ -28,9 +28,29 @@ local function HasProfession(skillLine)
     return false
 end
 
+-- Meldet einmalig, wenn der Charakter gar keinen Beruf gelernt hat.
+-- GetProfessions() liefert dann eine leere Liste, alle Regeln greifen nicht.
+local noProfessionReported = false
+
+local function CheckAnyProfession()
+    if next({ GetProfessions() }) == nil then
+        if not noProfessionReported then
+            print(NOPROFESSION)
+            noProfessionReported = true
+        end
+        return false
+    end
+    return true
+end
+
 -- Bedarf aller gelernten Berufe je Item aufaddieren und mit dem Bestand abgleichen.
 -- Die Tabelle order enthält die Reihenfolge der Item-IDs, wie sie in den Regeln auftauchen.
 local function BuildTargets()
+    -- Ohne gelernten Beruf greift keine Regel; einmalig melden statt still nichts zu tun.
+    if not CheckAnyProfession() then
+        return {}, {}
+    end
+
     local targets, order = {}, {}
     for _, rule in ipairs(ns.RULES) do
         if HasProfession(rule.profession) then
@@ -88,7 +108,18 @@ function ns.Buy()
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then
+                -- BuyMerchantItem meldet keinen Erfolg zurück. Deshalb wird der
+                -- Bestand vor und nach dem Kauf verglichen: bleibt er gleich,
+                -- war die Tasche voll (oder das Sortiment hat sich geändert).
+                local before = C_Item.GetItemCount(itemID)
                 BuyMerchantItem(slot, missing)
+                local after = C_Item.GetItemCount(itemID)
+
+                if after <= before then
+                    local itemName = C_Item.GetItemNameByID(itemID) or itemID
+                    print(itemName .. NOBAGSPACE)
+                    break
+                end
                 bought = true
             end
         end
@@ -109,8 +140,8 @@ function ns.IsDarkmoonFaireActive()
             return true
         end
     end
-    -- return false
-    return true -- DEV-MODUS: immer aktiv
+    return false
+    -- return true -- DEV-MODUS: immer aktiv
 end
 
 -- Wandelt die QuestID der Berufsquests in eine lesbare Ausgabe um,

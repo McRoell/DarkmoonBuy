@@ -11,7 +11,7 @@ Sollte der Händler etwas nicht haben, gibt es eine entsprechende Fehlermeldung 
 Darkmoon Buy prüft ob der Dunkelmondjahrmarkt gerade stattfindet. Ist das der Fall, wird am Händlerfenster ein Button angezeigt, mit dem man die füür die Berufe-Quests benötigten Materialien kaufen kann. Dabei wird geprüft, welche Berufe der Char ausübt und was sich noch im Inventar befindet. Es wird also nur das gekauft, was noch fehlt.
 Damit der Button nicht ständig rumnervt, wird er nicht angezeigt, wenn die Berufsquests während des aktuellen Jahrmarkts bereits abgeschlossen wurden – vorausgesetzt das Addon war bereits aktiv.
 ## Einstellungen und optionale Funktionen.
-/dmbuy gibt     eine Übersicht aller Befehle aus –Im grunde den Inhalt dieses Kapitels.  
+/dmbuy          gibt eine Übersicht aller Befehle aus –Im grunde den Inhalt dieses Kapitels.  
 /dmbuy buy      Wer keine Buttons mag, kann auch von Hand einkaufen  
 /dmbuy isdm     gibt an, ob der Jahrmarkt aktuell stattfindet.  
 /dmbuy qdate    gibt an, wann die Berufsquests zuletzt abgeschlossen worden sind.  

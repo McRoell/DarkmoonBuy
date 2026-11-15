@@ -10,10 +10,11 @@
 # Alles ignorieren
 *
 
-# Allowlist – diese Dateien werden doch nicht ignoriert.
+# Allowlist – diese Dateien werden dann doch nicht ignoriert.
 !*/
 !.gitignore
 !*.md
 !*.toc
 !*.lua
 !*.xml
+!*.blp

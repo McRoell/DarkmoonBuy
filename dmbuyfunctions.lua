@@ -1,9 +1,12 @@
--- Version 0.1.5
+-- Version 0.1.8
 
 local addonName, ns = ...
 
--- Abfrage welche Berufe der Char hat/kann (s. /myprofs)
-local function PrintMyProfessions()
+--
+-- Abfrage welche Berufe der Char hat/kann (s. /dmbuy profs)
+-- Die fünf Slots werden der Reihe nach durchgegangen und deren Name ausgegeben.
+--
+function ns.PrintMyProfessions()
     local profs = { GetProfessions() }
     for slot = 1, 5 do
         local index = profs[slot]
@@ -13,9 +16,9 @@ local function PrintMyProfessions()
         end
     end
 end
-ns.PrintMyProfessions = PrintMyProfessions
 
--- Vergleicht mit dem 7. Rückgabewert (skillLine) von GetProfessionInfo
+-- Vergleicht den 7. Rückgabewert (skillLineID, im Grunde die ID des Berufs) 
+-- von GetProfessionInfo mit dem Übergebenen Wert (skillLine)
 local function HasProfession(skillLine)
     for _, index in pairs({ GetProfessions() }) do
         if select(7, GetProfessionInfo(index)) == skillLine then
@@ -25,8 +28,29 @@ local function HasProfession(skillLine)
     return false
 end
 
--- Bedarf aller gelernten Berufe je Item aufaddieren
+-- Meldet einmalig, wenn der Charakter gar keinen Beruf gelernt hat.
+-- GetProfessions() liefert dann eine leere Liste, alle Regeln greifen nicht.
+local noProfessionReported = false
+
+local function CheckAnyProfession()
+    if next({ GetProfessions() }) == nil then
+        if not noProfessionReported then
+            print(NOPROFESSION)
+            noProfessionReported = true
+        end
+        return false
+    end
+    return true
+end
+
+-- Bedarf aller gelernten Berufe je Item aufaddieren und mit dem Bestand abgleichen.
+-- Die Tabelle order enthält die Reihenfolge der Item-IDs, wie sie in den Regeln auftauchen.
 local function BuildTargets()
+    -- Ohne gelernten Beruf greift keine Regel; einmalig melden statt still nichts zu tun.
+    if not CheckAnyProfession() then
+        return {}, {}
+    end
+
     local targets, order = {}, {}
     for _, rule in ipairs(ns.RULES) do
         if HasProfession(rule.profession) then
@@ -42,6 +66,16 @@ local function BuildTargets()
     return targets, order
 end
 
+-- Liefert die Questtabelle zu einer ID (oder nil).
+local function FindQuest(questID)
+    for _, quest in ipairs(ns.QUESTS) do
+        if quest.id == questID then
+            return quest
+        end
+    end
+    return nil
+end
+
 -- Slot-Nummer je Item-ID beim aktuellen Händler
 local function BuildMerchantIndex()
     local slots = {}
@@ -55,7 +89,8 @@ local function BuildMerchantIndex()
     return slots
 end
 
-ns.Buy = function()
+-- Funktion, die das Einkaufen beim Händler übernimmt (s. /dmbuy)
+function ns.Buy()
     if not MerchantFrame:IsShown() then
         print(NOVENDOR)
         return
@@ -68,12 +103,23 @@ ns.Buy = function()
     for _, itemID in ipairs(order) do
         local slot = slots[itemID]
         if not slot then
-            local ItemName = C_Item.GetItemNameByID(itemID) or itemID
-            print(ItemName .. NOITEM)
+            local itemName = C_Item.GetItemNameByID(itemID) or itemID
+            print(itemName .. NOITEM)
         else
             local missing = targets[itemID] - C_Item.GetItemCount(itemID)
             if missing > 0 then
+                -- BuyMerchantItem meldet keinen Erfolg zurück. Deshalb wird der
+                -- Bestand vor und nach dem Kauf verglichen: bleibt er gleich,
+                -- war die Tasche voll (oder das Sortiment hat sich geändert).
+                local before = C_Item.GetItemCount(itemID)
                 BuyMerchantItem(slot, missing)
+                local after = C_Item.GetItemCount(itemID)
+
+                if after <= before then
+                    local itemName = C_Item.GetItemNameByID(itemID) or itemID
+                    print(itemName .. NOBAGSPACE)
+                    break
+                end
                 bought = true
             end
         end
@@ -84,7 +130,9 @@ ns.Buy = function()
     end
 end
 
-local function IsDarkmoonFaireActive()
+-- Prüft, ob der Dunkelmond-Jahrmarkt gerade stattfindet (s. /dmbuy isdm)
+-- TODO: Vor dem Release den Dev-Modus entfernen, damit der Kalenderwert gilt.
+function ns.IsDarkmoonFaireActive()
     local today = C_DateAndTime.GetCurrentCalendarTime().monthDay
     for i = 1, C_Calendar.GetNumDayEvents(0, today) do
         local event = C_Calendar.GetDayEvent(0, today, i)
@@ -93,11 +141,15 @@ local function IsDarkmoonFaireActive()
         end
     end
     return false
+    -- return true -- DEV-MODUS: immer aktiv
 end
-ns.IsDarkmoonFaireActive = IsDarkmoonFaireActive
 
-local function FormatEntry(questID)
-    local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
+-- Wandelt die QuestID der Berufsquests in eine lesbare Ausgabe um,
+-- inklusive Datum und Tage seit Abschluss (s. /dmbuy qdate)
+-- Der Titel kommt aus ns.QUESTS; unbekannte IDs werden als solche gemeldet.
+function ns.FormateQuestDate(questID)
+    local quest = FindQuest(questID)
+    local title = quest and quest.title or UNKNOWNQUEST
     local t = DarkmoonBuyData.questDone[questID]
     if t then
         local days = math.floor((time() - t) / 86400)
@@ -105,7 +157,6 @@ local function FormatEntry(questID)
     end
     return ("%s (%d): " .. NODATE):format(title, questID)
 end
-ns.FormatEntry = FormatEntry
 
 -- Tage seit dem letzten gespeicherten Abschluss, nil = keine Daten
 local function DarkmoonQuestsLastDone()
@@ -113,8 +164,8 @@ local function DarkmoonQuestsLastDone()
     if not done then return nil end
 
     local newest
-    for _, id in ipairs(ns.QUESTS) do
-        local t = done[id]
+    for _, quest in ipairs(ns.QUESTS) do
+        local t = done[quest.id]
         if t and (not newest or t > newest) then
             newest = t
         end
@@ -122,44 +173,167 @@ local function DarkmoonQuestsLastDone()
     if not newest then return nil end
     return math.floor((time() - newest) / 86400)
 end
-ns.DarkmoonQuestsLastDone = DarkmoonQuestsLastDone
 
 -- Button am Händlerfenster
 local button
 
-local function ShouldShow()
-    if not ns.IsDarkmoonFaireActive or not ns.DarkmoonQuestsLastDone then
+--
+-- Anzeigemodus des Buttons (s. /dmbuy button)
+--
+--   "off"     Button wird nie angezeigt, Einkauf nur über /dmbuy buy
+--   "always"  Button erscheint immer, sobald die Grundbedingung erfüllt ist
+--   "instock" Button zusätzlich nur, wenn der Händler ein Regel-Item führt
+--   "inneed"  wie "instock", zusätzlich muss bei einem Item Bedarf bestehen
+--
+local BUTTON_MODES = { off = true, always = true, instock = true, inneed = true }
+local DEFAULT_BUTTON_MODE = "inneed"
+
+function ns.GetButtonMode()
+    local mode = DarkmoonBuyData and DarkmoonBuyData.buttonMode
+    if BUTTON_MODES[mode] then
+        return mode
+    end
+    return DEFAULT_BUTTON_MODE
+end
+
+function ns.SetButtonMode(mode)
+    if not BUTTON_MODES[mode] then
         return false
     end
-    local days = ns.DarkmoonQuestsLastDone()
-    return ns.IsDarkmoonFaireActive() and (days == nil or days > 6)
+    DarkmoonBuyData.buttonMode = mode
+    return true
+end
+
+-- Prüft, ob der Händler mindestens ein Regel-Item führt und ob darauf Bedarf besteht.
+-- Liefert drei Werte: hatItem, hatBedarf, gelesen.
+-- "gelesen" ist false, wenn das Sortiment noch nicht auswertbar war.
+local function CheckStock()
+    local targets, order = BuildTargets()
+    if #order == 0 then
+        return false, false, false
+    end
+
+    local slots = BuildMerchantIndex()
+    if not next(slots) then
+        return false, false, false
+    end
+
+    local hasItem, hasNeed = false, false
+    for _, itemID in ipairs(order) do
+        if slots[itemID] then
+            hasItem = true
+            if targets[itemID] - C_Item.GetItemCount(itemID) > 0 then
+                hasNeed = true
+            end
+        end
+    end
+    return hasItem, hasNeed, true
+end
+
+local function ShouldShow()
+    -- Grundbedingung: Jahrmarkt aktiv und letzte Abgabe länger als 6 Tage her.
+    if not ns.IsDarkmoonFaireActive() then
+        return false
+    end
+    local days = DarkmoonQuestsLastDone()
+    if not (days == nil or days > 6) then
+        return false
+    end
+
+    local mode = ns.GetButtonMode()
+    if mode == "off" then
+        return false
+    end
+    if mode == "always" then
+        return true
+    end
+
+    local hasItem, hasNeed, read = CheckStock()
+    if not read then
+        -- Sortiment noch nicht auswertbar: Button nicht verstecken.
+        return true
+    end
+    if mode == "instock" then
+        return hasItem
+    end
+    return hasItem and hasNeed
 end
 
 local function CreateButton()
     button = CreateFrame("Button", "DMBuyButton", MerchantFrame, "UIPanelButtonTemplate")
     button:SetSize(140, 40)
-    button:SetPoint("TOPLEFT", MerchantFrame, "BOTTOMRIGHT", -140,   5)
+    button:SetPoint("TOPLEFT", MerchantFrame, "BOTTOMRIGHT", -140, 5)
     button:SetText(BUYBUTTONTXT)
     button:SetScript("OnClick", function()
         ns.Buy()
     end)
 end
 
--- Ereignisse
+-- Kalender-Tweak: öffnet den Kalender einmalig, um die Eventdaten zu laden (s. /dmbuy cal)
+function ns.InitializeCalendar()
+    local frame = CreateFrame("Frame")
+    frame:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+    frame:SetScript("OnEvent", function(self, event, ...)
+        if event == "CALENDAR_UPDATE_EVENT_LIST" then
+            print(DMINITCAL)
+            self:UnregisterEvent("CALENDAR_UPDATE_EVENT_LIST")
+        end
+    end)
+    C_Calendar.OpenCalendar()
+end
+
+-- Die Print-Funktionen der Slash-Befehle (s. /dmbuy isdm, /dmbuy qdate)
+
+function ns.PrintIsDarkmoonFaire()
+    if ns.IsDarkmoonFaireActive() then
+        print(DMACTIVE)
+    else
+        print(DMINACTIVE)
+    end
+end
+
+function ns.PrintQuestDates(msg)
+    local questID = tonumber(msg)
+    if questID then
+        print(ns.FormateQuestDate(questID))
+        return
+    end
+
+    -- Ohne gefundene Daten (Addon neu, Beruf gewechselt) einmal NODATAYET ausgeben.
+    local done = DarkmoonBuyData.questDone
+    local found = false
+    for _, quest in ipairs(ns.QUESTS) do
+        if done[quest.id] then
+            print(ns.FormateQuestDate(quest.id))
+            found = true
+        end
+    end
+
+    if not found then
+        print(NODATAYET)
+    end
+end
+
+-- Initialisierung des Addons beim Laden
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:RegisterEvent("QUEST_TURNED_IN")
 f:RegisterEvent("MERCHANT_SHOW")
-f:SetScript("OnEvent", function(self, event, arg1)
-    if event == "ADDON_LOADED" and arg1 == addonName then
-        DarkmoonBuyData = DarkmoonBuyData or {}
-        DarkmoonBuyData.questDone = DarkmoonBuyData.questDone or {}
-    elseif event == "QUEST_TURNED_IN" and ns.TRACKED[arg1] then
-        DarkmoonBuyData.questDone[arg1] = time()               -- arg1 = questID
-    elseif event == "MERCHANT_SHOW" then
-        if not button then
-            CreateButton()
+f:SetScript(
+    "OnEvent",
+    function(self, event, arg1)
+        if event == "ADDON_LOADED" and arg1 == addonName then
+            DarkmoonBuyData = DarkmoonBuyData or {}
+            DarkmoonBuyData.questDone = DarkmoonBuyData.questDone or {}
+            print(DMLOADED)
+            ns.InitializeCalendar()  -- Kalenderdaten im Hintergrund laden
+        elseif event == "QUEST_TURNED_IN" and ns.CRAFTQUESTS[arg1] then
+            DarkmoonBuyData.questDone[arg1] = time()               -- arg1 = questID
+        elseif event == "MERCHANT_SHOW" then
+            if not button then
+                CreateButton()
+            end
+            button:SetShown(ShouldShow())
         end
-        button:SetShown(ShouldShow())
     end
-end)
+)

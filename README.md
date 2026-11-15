@@ -1,23 +1,26 @@
-# Darkmoon Buy – Alpha (v0.1.5)
+# Darkmoon Buy – Alpha (v0.1.8)
 
-Hilft die für die Berufsquests des Dunkelmond–Jahrmarkt benötigten Mats zu kaufen. 
+Helps you buy the materials needed for the Darkmoon Faire profession quests.
 
-Aktuell noch nicht wirklich lokalisiert, sollte aber sinnvoll mit allen Sprachversionen des Clients laufen. 
-## Was kann es, macht es
-Es prüft welche Berufe ein Char aktuell gelernt hat und ergänzt das Inventar um die benötigten Mats für die jeweiligen Berufe. 
-Sollte der Händler etwas nicht haben, gibt es eine entsprechende Fehlermeldung im Chat. 
-## Wie funktioniert es
-Einfach das Händlerfenster öffnen und `/dmbuy` in den Chat schreiben. Alternativ geht natürlich auch das Ganze in ein Makro zu packen. 
-## Was kann es (noch) nicht
-Es prüft nicht ob überhaupt Dunkelmond ist oder ob man die Quests nicht bereits vorgestern erledigt hat. Die Items werden auf die benötigte Menge eingekauft. 
-## und sonst so (AKA Developer Tools)
-Im Moment noch implementiert
-* `/myprofs` gibt die aktiven Berufe des Chars aus
-* Das Addon speichert den Zeitpunkt wenn einer der Berufsquest abgegeben wurde im Unix Zeitformat – natürlich nur dann, wenn das Addon aktiv ist. Diese Info wird genutzt um, zusammen mit der Info dass Dunkelmond ist, beim Händlerbesuch einen Button erscheinen zu lassen, mit dem man dann einkauft, oder halt eben nicht.  
-Jedenfalls gibt `/dmquestdate` die entsprechenden Daten aus. Voraussetzung ist allerdings, dass die Quests überhaupt einmal mit aktiviertem Addon abgeschlossen wurden. 
-`/dmisdm` gibt aus ob überhaupt Dunkelmond ist. Aktuell gibt es aber noch einen Bug, dass die Info erst gesichert bereit steht, wenn frt Kalender einmal geöffnet wurde. `/dmcal` soll das beheben. AKtuell als eigener Slashbefehl, zuknftig als Teil des normalen Ablaufs.
-## Ausblick, wo hakt es noch
-- Der Code ist ein einziger Wirrwarr und muss noch aufgeräumt werden.
-- Im Moment wird noch die ItemID und nicht der Itemname ausgegeben, wenn versucht wird etwas zu kaufen, was der Händler nicht hat.
-- Wenn ein Händler keine Mats hat, die ich für meine Berufsquest benötige, muss der Button ebenfalls gar nicht erst angezeigt werden.
-- "Ich brauch einen Button für das TomTom Command zum nächsten Händler" – nicht vor 2027 😊
+Not fully localized yet, but it should work sensibly with all client languages.
+
+## What it does
+It checks which professions a character has currently learned and tops up the inventory with the materials needed for those professions.
+If the vendor doesn't have something, an appropriate error message is shown in chat.
+## How it works
+Darkmoon Buy checks whether the Darkmoon Faire is currently running. If it is, a button is shown on the vendor window that lets you buy the materials needed for the profession quests. It checks which professions the character practices and what is already in the inventory, so only what is still missing gets bought.
+To keep the button from getting in your way, it is not shown if the profession quests have already been completed during the current Faire – provided the addon was already active at that time.
+## Settings and optional features
+`/dmbuy`          gives an overview of all commands – basically the content of this chapter.  
+`/dmbuy buy`      If you don't like buttons, you can also buy manually.  
+`/dmbuy isdm`     shows whether the Faire is currently running.  
+`/dmbuy qdate`    shows when the profession quests were last completed.  
+`/dmbuy profs`    lists the current professions.  
+`/dmbuy Button`   (off | always | instock | inneed) lets you define further conditions for when the button should be shown.  
+* "off"     No button is shown on the vendor window. Purchases are made using /dmbuy buy.
+* "always"  Button is always shown as soon as the basic condition is met
+* "instock" Button is additionally shown only if the vendor carries a rule item
+* "inneed"  like "instock", but there must also be a need for at least one item
+## And everything else (AKA Developer Tools)
+Not yet implemented:
+* Passing the next vendor to TomTom.

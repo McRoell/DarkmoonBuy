@@ -2,13 +2,13 @@
 ..\FrameXML\UI.xsd">
 	<Script file="darkmoonbuy_deDE.lua"/>
   <!-- yet to come, maybe
-	  <Script file="darkmoonbut_esES.lua"/>
+	  <Script file="darkmoonbuy_esES.lua"/>
 	  <Script file="darkmoonbuy_esMX.lua"/>
 	  <Script file="darkmoonbuy_frFR.lua"/>
 	  <Script file="darkmoonbuy_koKR.lua"/>
 	  <Script file="darkmoonbuy_ruRU.lua"/>
 	  <Script file="darkmoonbuy_zhCN.lua"/>
-	  <Script file="darkmoonbuyt_zhTW.lua"/>
+	  <Script file="darkmoonbuy_zhTW.lua"/>
   -->
 <!-- If everything fails, load enUS as default -->
 	<Script file="darkmoonbuy_enUS.lua"/>

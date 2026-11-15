@@ -30,10 +30,10 @@ if (GetLocale() == "deDE") then
 
     -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
   HELPTITLE  = "Darkmoon Buy - Befehle:";
-  HELPBUY    = "  /dmbuy buy           Materialien beim Händler einkaufen";
-  HELPCAL    = "  /dmbuy cal           Kalender initialisieren";
-  HELPISDM   = "  /dmbuy isdm          Prüfen, ob der Jahrmarkt stattfindet";
-  HELPQDATE  = "  /dmbuy qdate [id]    Abschlussdatum einer Quest (ohne id: alle)";
-  HELPPROFS  = "  /dmbuy profs         Berufe des Charakters ausgeben";
-  HELPBUTTON = "  /dmbuy button [mode] Anzeigemodus des Buttons (always|instock|inneed)";
+  HELPBUY    = "  |cffb960fe/dmbuy buy|r - Materialien beim Händler einkaufen";
+  HELPCAL    = "  |cffb960fe/dmbuy cal|r - Kalender initialisieren";
+  HELPISDM   = "  |cffb960fe/dmbuy isdm|r - Prüfen, ob der Jahrmarkt stattfindet";
+  HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Abschlussdatum einer Quest (ohne id: alle)";
+  HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Berufe des Charakters ausgeben";
+  HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Anzeigemodus des Buttons (off | always | instock | inneed)";
 end

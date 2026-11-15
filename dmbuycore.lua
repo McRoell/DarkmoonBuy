@@ -22,10 +22,10 @@ end
 local function Usage()
     print(HELPTITLE)
     print(HELPBUY)
-    print(HELPCAL)
+--    print(HELPCAL)
     print(HELPISDM)
     print(HELPQDATE)
-    print(HELPPROFS)
+ --   print(HELPPROFS)
     print(HELPBUTTON)
 end
 

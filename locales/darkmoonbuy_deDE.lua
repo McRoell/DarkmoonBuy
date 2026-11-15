@@ -19,7 +19,7 @@ if (GetLocale() == "deDE") then
 
     -- Texte für dmisdm
   DMACTIVE    = "Der Dunkelmond-Jahrmarkt findet derzeit statt";
-  DMINACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit |cffff0000NICHT|rstatt";
+  DMINACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit NICHT statt";
 
     -- Texte für dmbybutton
   BUYBUTTONTXT = "Dunkelmond–\nMats Kaufen";
@@ -36,4 +36,15 @@ if (GetLocale() == "deDE") then
   HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Abgabedatum der Jahrmarkt-Berufsquest anzeigen (ohne id werden alle angezeigt)";
   HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Berufe des Charakters ausgeben";
   HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Anzeigemodus des Buttons (off | always | instock | inneed)";
-end
+
+    -- Questtitel der Berufsquests (werden in dmbuydb.lua verwendet)
+  ALCTITLE      = "Eine prickelnde Mischung";
+  INSCRIBTITLE  = "Ein Blick in die Zukunft";
+  COOKTITLE     = "Wie der Frosch knusprig wird";
+  LEATHERTITLE  = "Begehrte Preise";
+  TAILORTITLE   = "Banner, überall Banner!";
+  ARCHTITLE     = "Spaß für die Kleinen!";
+
+    -- Ausgabe für unbekannte Quest-IDs
+  UNKNOWNQUEST  = "Unbekannte Quest";
+end;

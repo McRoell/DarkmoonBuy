@@ -3,8 +3,8 @@
 local _, ns = ...
 
 ns.CRAFTQUESTS = {}
-for _, id in ipairs(ns.QUESTS) do
-    ns.CRAFTQUESTS[id] = true
+for _, quest in ipairs(ns.QUESTS) do
+    ns.CRAFTQUESTS[quest.id] = true
 end
 
 --
@@ -16,16 +16,16 @@ end
 --   /dmbuy isdm         Prüfen, ob der Jahrmarkt stattfindet
 --   /dmbuy qdate [id]   Abschlussdatum einer Quest (ohne id: alle)
 --   /dmbuy profs        Berufe des Charakters ausgeben
---   /dmbuy button [mode] Anzeigemodus des Buttons (always|instock|inneed)
+--   /dmbuy button [mode] Anzeigemodus des Buttons (off|always|instock|inneed)
 --
 
 local function Usage()
     print(HELPTITLE)
     print(HELPBUY)
---    print(HELPCAL)
+    print(HELPCAL)
     print(HELPISDM)
     print(HELPQDATE)
- --   print(HELPPROFS)
+    print(HELPPROFS)
     print(HELPBUTTON)
 end
 

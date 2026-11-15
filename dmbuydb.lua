@@ -1,4 +1,4 @@
--- Version 0.1.7
+-- Version 0.1.8
 -- Datenbank ist vielleicht etwas hoch gegriffen, aber irgendwie ist das hier doch eine. :)
 
 local _, ns = ...
@@ -30,7 +30,7 @@ ns.RULES = {
     { profession = 773, items = {                        -- Inschriftenkunde
         { item = 39354, count = 5 },                     -- Leichtes Pergament
     }},
-    { profession = 794, items = {
+    { profession = 794, items = {                        -- Archäologie
         { item = 87535, count = 3 },                     -- Kiste mit fossilen Archäologiefragmenten
     }}
 }
@@ -38,11 +38,17 @@ ns.RULES = {
 -- Die Berufsquests auf dem Dunkelmondjahrmarkt, für die Materialien benötigt werden.
 -- Nur diese Quests werden als abgeschlossen gespeichert.
 --
+-- Die Titel stehen in den Lokalisierungsdateien (z.B. ALCTITLE in
+-- darkmoonbuy_deDE.lua / darkmoonbuy_enUS.lua). Wichtig: die Schlüssel hier
+-- NICHT in Anführungszeichen setzen, sonst wird der Schlüsselname selbst
+-- ausgegeben. Die Sprachdateien müssen vor dieser Datei geladen werden –
+-- das regelt locales\Locales.xml und die Reihenfolge in DarkmoonBuy.toc.
+--
 ns.QUESTS = {
-    29506,    -- Alchemie; Eine prickelnde Mischung
-    29515,    -- Inschriftenkunde; Ein Blick in die Zukunft
-    29509,    -- Kochen; Wie der Frosch knusprig wird
-    29517,    -- Lederverarbeitung; Begehrte Preise
-    29520,    -- Schneiderei; Banner, überall Banner!
-    29507,    -- Archäologie; Spaß für die Kleinen!
+    { id = 29506, title = ALCTITLE },          -- Alchemie
+    { id = 29515, title = INSCRIBTITLE },      -- Inschriftenkunde
+    { id = 29509, title = COOKTITLE },         -- Kochen
+    { id = 29517, title = LEATHERTITLE },      -- Lederverarbeitung
+    { id = 29520, title = TAILORTITLE },       -- Schneiderei
+    { id = 29507, title = ARCHTITLE },         -- Archäologie
 }

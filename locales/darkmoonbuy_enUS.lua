@@ -19,7 +19,7 @@ if not (DMBClientLanguage == "set") then
 
     -- Texte für dmisdm
   DMACTIVE    = "The Darkmoon Faire IS currently taking place";
-  DMINACTIVE  = "The Darkmoon Faire is |cffff0000NOT|r taking place";
+  DMINACTIVE  = "The Darkmoon Faire is NOT taking place";
     
   -- Texte für dmbybutton
   BUYBUTTONTXT = "Buy Darkmoon\nFaire materials";
@@ -36,4 +36,15 @@ if not (DMBClientLanguage == "set") then
   HELPQDATE  = "  |cffb960fe/dmbuy qdate [id]|r - Completion date of the Faire professions quest (without id all are shown)";
   HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Print the character's professions";
   HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Button display mode (off | always | instock | inneed)";
+
+    -- Quest titles of the profession quests (used in dmbuydb.lua)
+  ALCTITLE      = "A Fizzy Fusion";
+  INSCRIBTITLE  = "Writing the Future";
+  COOKTITLE     = "Putting the Crunch in the Frog";
+  LEATHERTITLE  = "Eyes on the Prizes";
+  TAILORTITLE   = "Banners, Banners Everywhere!";
+  ARCHTITLE     = "Fun for the Little Ones";
+
+    -- Output for unknown quest IDs
+  UNKNOWNQUEST  = "Unknown quest";
 end;

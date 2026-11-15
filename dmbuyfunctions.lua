@@ -46,6 +46,16 @@ local function BuildTargets()
     return targets, order
 end
 
+-- Liefert die Questtabelle zu einer ID (oder nil).
+local function FindQuest(questID)
+    for _, quest in ipairs(ns.QUESTS) do
+        if quest.id == questID then
+            return quest
+        end
+    end
+    return nil
+end
+
 -- Slot-Nummer je Item-ID beim aktuellen Händler
 local function BuildMerchantIndex()
     local slots = {}
@@ -105,8 +115,10 @@ end
 
 -- Wandelt die QuestID der Berufsquests in eine lesbare Ausgabe um,
 -- inklusive Datum und Tage seit Abschluss (s. /dmbuy qdate)
+-- Der Titel kommt aus ns.QUESTS; unbekannte IDs werden als solche gemeldet.
 function ns.FormateQuestDate(questID)
-    local title = C_QuestLog.GetTitleForQuestID(questID) or "?"
+    local quest = FindQuest(questID)
+    local title = quest and quest.title or UNKNOWNQUEST
     local t = DarkmoonBuyData.questDone[questID]
     if t then
         local days = math.floor((time() - t) / 86400)
@@ -121,8 +133,8 @@ local function DarkmoonQuestsLastDone()
     if not done then return nil end
 
     local newest
-    for _, id in ipairs(ns.QUESTS) do
-        local t = done[id]
+    for _, quest in ipairs(ns.QUESTS) do
+        local t = done[quest.id]
         if t and (not newest or t > newest) then
             newest = t
         end
@@ -259,9 +271,9 @@ function ns.PrintQuestDates(msg)
     -- Ohne gefundene Daten (Addon neu, Beruf gewechselt) einmal NODATAYET ausgeben.
     local done = DarkmoonBuyData.questDone
     local found = false
-    for _, id in ipairs(ns.QUESTS) do
-        if done[id] then
-            print(ns.FormateQuestDate(id))
+    for _, quest in ipairs(ns.QUESTS) do
+        if done[quest.id] then
+            print(ns.FormateQuestDate(quest.id))
             found = true
         end
     end

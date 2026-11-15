@@ -1,5 +1,4 @@
-# Darkmoon Buy – Alpha (v0.1.8)
-
+# Darkmoon Buy
 Hilft die für die Berufsquests des Dunkelmond–Jahrmarkt benötigten Mats zu kaufen. 
 
 Aktuell noch nicht komplett lokalisiert, sollte aber sinnvoll mit allen Sprachversionen laufen. 

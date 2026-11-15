@@ -2,7 +2,8 @@
 
 Hilft die für die Berufsquests des Dunkelmond–Jahrmarkt benötigten Mats zu kaufen. 
 
-Aktuell noch nicht wirklich lokalisiert, sollte aber sinnvoll mit allen Sprachversionen des Clients laufen. 
+Aktuell noch nicht komplett lokalisiert, sollte aber sinnvoll mit allen Sprachversionen laufen. 
+
 ## Was kann es, macht es
 Es prüft welche Berufe ein Char aktuell gelernt hat und ergänzt das Inventar um die benötigten Mats für die jeweiligen Berufe. 
 Sollte der Händler etwas nicht haben, gibt es eine entsprechende Fehlermeldung im Chat. 

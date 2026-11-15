@@ -2,7 +2,8 @@
 
 Helps you buy the materials needed for the Darkmoon Faire profession quests.
 
-Not really localized yet, but it should work sensibly with all client languages.
+Not fully localized yet, but it should work sensibly with all client languages.
+
 ## What it does
 It checks which professions a character has currently learned and tops up the inventory with the materials needed for those professions.
 If the vendor doesn't have something, an appropriate error message is shown in chat.

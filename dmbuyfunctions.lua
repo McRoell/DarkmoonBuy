@@ -193,9 +193,7 @@ function ns.SetButtonMode(mode)
     return true
 end
 
--- Prüft, ob der Händler mindestens ein Regel-Item führt und ob darauf Bedarf besteht.
--- Liefert drei Werte: hatItem, hatBedarf, gelesen.
--- "gelesen" ist false, wenn das Sortiment noch nicht auswertbar war.
+-- Checks if vendor has at least one crafting item.
 local function CheckStock()
     local targets, order = BuildTargets()
     if #order == 0 then
@@ -219,8 +217,8 @@ local function CheckStock()
     return hasItem, hasNeed, true
 end
 
+-- Basic condition: Faire is active and the last turn-in was more than 6 days ago
 local function ShouldShow()
-    -- Grundbedingung: Jahrmarkt aktiv und letzte Abgabe länger als 6 Tage her.
     if not ns.IsDarkmoonFaireActive() then
         return false
     end
@@ -239,7 +237,7 @@ local function ShouldShow()
 
     local hasItem, hasNeed, read = CheckStock()
     if not read then
-        -- Sortiment noch nicht auswertbar: Button nicht verstecken.
+        -- Vendor inventory not yet evaluable: do not hide the button.
         return true
     end
     if mode == "instock" then
@@ -258,7 +256,7 @@ local function CreateButton()
     end)
 end
 
--- Kalender-Tweak: öffnet den Kalender einmalig, um die Eventdaten zu laden (s. /dmbuy cal)
+-- Calendar tweak: opens the calendar once to load the event data (see /dmbuy cal)
 function ns.InitializeCalendar()
     local frame = CreateFrame("Frame")
     frame:RegisterEvent("CALENDAR_UPDATE_EVENT_LIST")
@@ -270,8 +268,6 @@ function ns.InitializeCalendar()
     end)
     C_Calendar.OpenCalendar()
 end
-
--- Die Print-Funktionen der Slash-Befehle (s. /dmbuy isdm, /dmbuy qdate)
 
 function ns.PrintIsDarkmoonFaire()
     if ns.IsDarkmoonFaireActive() then
@@ -288,8 +284,8 @@ function ns.PrintQuestDates(msg)
         return
     end
 
-    -- Ohne gefundene Daten (Addon neu, Beruf gewechselt) einmal NODATAYET ausgeben.
-    local done = DarkmoonBuyData.questDone
+-- If no data was found (addon is new, profession changed), output NODATAYET once.
+local done = DarkmoonBuyData.questDone
     local found = false
     for _, quest in ipairs(ns.QUESTS) do
         if done[quest.id] then
@@ -303,7 +299,7 @@ function ns.PrintQuestDates(msg)
     end
 end
 
--- Initialisierung des Addons beim Laden
+-- Addon initialization on load
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 f:RegisterEvent("QUEST_TURNED_IN")
@@ -315,7 +311,7 @@ f:SetScript(
             DarkmoonBuyData = DarkmoonBuyData or {}
             DarkmoonBuyData.questDone = DarkmoonBuyData.questDone or {}
             print(DMLOADED)
-            ns.InitializeCalendar()  -- Kalenderdaten im Hintergrund laden
+            ns.InitializeCalendar()  -- loading calendar info in background
         elseif event == "QUEST_TURNED_IN" and ns.CRAFTQUESTS[arg1] then
             DarkmoonBuyData.questDone[arg1] = time()               -- arg1 = questID
         elseif event == "MERCHANT_SHOW" then

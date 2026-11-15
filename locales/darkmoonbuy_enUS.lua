@@ -1,36 +1,36 @@
--- Darkmoon Buy v 0.1.8 --
+-- Darkmoon Buy v 1.0
 if not (DMBClientLanguage == "set") then
 	print("Darkmoon Buy loaded");
 
-    -- Text for initialization
+    -- Initialization
   DMLOADED    = "Darkmoon Buy loaded";
   DMINITCAL   = "Calendar initialized";
 
-    -- Texte für dmbuy
+  -- dmbuy buy
   NOVENDOR    = "Vendor window not open.";
   NOITEM      = " is not available from this vendor!";
   NONEED      = "Nothing was restocked";
   NOBAGSPACE  = " – no space in bags, purchase aborted!";
   NOPROFESSION = "No suitable professions learned - there is nothing to buy.";
 
-    -- Texte für dmquestdate
+    -- dmbuy qdate
   FINISHED    = " finished on %s";
   DAYAGO      = " (%d days ago)";
   NODATE      = "No record available!";
   NODATAYET   = "No data available (yet).";
 
-    -- Texte für dmisdm
+    -- dmbuy isdm
   DMACTIVE    = "The Darkmoon Faire IS currently taking place";
   DMINACTIVE  = "The Darkmoon Faire is NOT taking place";
     
-  -- Texte für dmbybutton
+	-- Button text
   BUYBUTTONTXT = "Buy Darkmoon\nFaire materials";
 
-    -- Texte für /dmbuy button
+    -- dmbuy button
   BUTTONMODE        = "Button display mode: ";
   BUTTONMODEUNKNOWN = "Unknown mode: ";
 
-    -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
+    -- Usage output
   HELPTITLE  = "Darkmoon Buy - Commands:";
   HELPBUY    = "  |cffb960fe/dmbuy buy|r - Buy needed crafting materials from the vendor";
   HELPCAL    = "  |cffb960fe/dmbuy cal|r - Initialize the calendar (development option)";

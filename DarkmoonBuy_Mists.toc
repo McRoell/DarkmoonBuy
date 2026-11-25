@@ -6,7 +6,7 @@
 ## SavedVariablesPerCharacter: DarkmoonBuyData
 ## Notes: A handy helper for buying materials for the Darkmoon Faire profession quests.
 ## Notes-deDE: Kleines Helferlein, zum Kaufen der Mats für die Berufsquests des Dunkelmond-Jahrmarkts.
-## Version: 1.0.1
+## Version: 1.0.1 MoP Classic
 ## X-Curse-Project-ID: 1805572
 ## X-ReleaseDate: 2026-11-25
 ## IconTexture: Interface\AddOns\DarkmoonBuy\dmbuyicon

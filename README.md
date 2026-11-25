@@ -1,4 +1,4 @@
-# Darkmoon Buy – Alpha (v0.1.8)
+# Darkmoon Buy
 
 Helps you buy the materials needed for the Darkmoon Faire profession quests.
 

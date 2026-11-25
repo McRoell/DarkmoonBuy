@@ -1,36 +1,36 @@
--- Darkmoon Buy v 0.1.8 --
+-- Darkmoon Buy v 1.0
 if (GetLocale() == "deDE") then
 	DMBClientLanguage = "set";
 
-  -- Text bei der Initialisierung
+  -- Initialization
   DMLOADED    = "Darkmoon Buy geladen";
   DMINITCAL   = "Kalender initialisiert";
 
-  -- Texte für dmbuy
+  -- dmbuy buy
   NOVENDOR    = "Kein Händlerfenster geöffnet";
   NOITEM      = " ist bei diesem Händler nicht verfügbar!";
   NONEED      = "Es wurde nichts aufgefüllt.";
   NOBAGSPACE  = " – kein Platz in den Taschen, Kauf abgebrochen!";
   NOPROFESSION = "Keine passenden Berufe gelernt - es gibt nichts einzukaufen.";
 
-    -- Texte für dmquestdate
+    -- dmbuy qdate
   FINISHED    = " abgeschlossen am %s";
   DAYAGO      = " (vor %d Tagen)";
   NODATE      = "Kein Eintrag vorhanden";
   NODATAYET   = "(Noch) keine Daten vorhanden.";
 
-    -- Texte für dmisdm
+    -- dmbuy isdm
   DMACTIVE    = "Der Dunkelmond-Jahrmarkt findet derzeit statt";
   DMINACTIVE  = "Der Dunkelmond-Jahrmarkt findet derzeit NICHT statt";
 
-    -- Texte für dmbybutton
+    -- Button text
   BUYBUTTONTXT = "Dunkelmond–\nMats Kaufen";
 
-    -- Texte für /dmbuy button
+    -- dmbuy button
   BUTTONMODE        = "Anzeigemodus des Buttons: ";
   BUTTONMODEUNKNOWN = "Unbekannter Modus: ";
 
-    -- Texte für die Befehlsübersicht (/dmbuy ohne Argument)
+    -- Usage output
   HELPTITLE  = "Darkmoon Buy - Befehle:";
   HELPBUY    = "  |cffb960fe/dmbuy buy|r - Benötigte Materialien für die Quests beim Händler kaufen";
   HELPCAL    = "  |cffb960fe/dmbuy cal|r - Kalender initialisieren (Entwickleroption)";
@@ -39,7 +39,7 @@ if (GetLocale() == "deDE") then
   HELPPROFS  = "  |cffb960fe/dmbuy profs|r - Berufe des Charakters ausgeben";
   HELPBUTTON = "  |cffb960fe/dmbuy button [mode]|r - Anzeigemodus des Buttons (off | always | instock | inneed)";
 
-    -- Questtitel der Berufsquests (werden in dmbuydb.lua verwendet)
+    -- Questnames (used by dmbuydb.lua)
   ALCTITLE      = "Eine prickelnde Mischung";
   INSCRIBTITLE  = "Ein Blick in die Zukunft";
   COOKTITLE     = "Wie der Frosch knusprig wird";
@@ -47,6 +47,6 @@ if (GetLocale() == "deDE") then
   TAILORTITLE   = "Banner, überall Banner!";
   ARCHTITLE     = "Spaß für die Kleinen!";
 
-    -- Ausgabe für unbekannte Quest-IDs
+    -- Unknown questID
   UNKNOWNQUEST  = "Unbekannte Quest";
 end;

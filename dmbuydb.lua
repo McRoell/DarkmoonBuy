@@ -1,54 +1,48 @@
--- Version 0.1.8
--- Datenbank ist vielleicht etwas hoch gegriffen, aber irgendwie ist das hier doch eine. :)
+-- Version 1.0
+-- "Database" might be a bit of a stretch, but somehow this is one after all. :)
 
 local _, ns = ...
 
 --
--- Die Einkaufsregeln für die verschiedenen Berufe. Also wie viel von was für jeden Beruf.
+-- The purchase rules for the different professions, i.e. how much of what each profession needs.
 --
 ns.RULES = {
--- item = Item-ID
--- count = Bedarf für diesen Beruf
--- benötigen mehrere Berufe dasselbe Item, wird der Bedarf addiert.
+-- item  = item ID
+-- count = quantity needed for this profession
+-- if several professions need the same item, the quantities are added together.
 
-    { profession = 171, items = {                        -- Alchemie
-        { item = 1645,  count = 5 },                     -- Mondbeerensaft
+    { profession = 171, items = {                        -- Alchemy
+        { item = 1645,  count = 5 },                     -- Moonberry Juice
     }},
-    { profession = 185, items = {                        -- Kochen
-        { item = 30817, count = 5 },                     -- Herkömmliches Mehl
+    { profession = 185, items = {                        -- Cooking
+        { item = 30817, count = 5 },                     -- Simple Flour
     }},
-    { profession = 165, items = {                        -- Lederverarbeitung
-        { item = 6260,  count = 5 },                     -- Blauer Farbstoff
-        { item = 6529,  count = 10 },                    -- Glänzendes Schmuckstück
-        { item = 2320,  count = 5 },                     -- Grober Faden
+    { profession = 165, items = {                        -- Letherworking
+        { item = 6260,  count = 5 },                     -- Blue Dye
+        { item = 6529,  count = 10 },                    -- Shiny Bauble
+        { item = 2320,  count = 5 },                     -- Coarse Thread
     }},
-    { profession = 197, items = {                        -- Schneiderei
-        { item = 6260,  count = 1 },                     -- Blauer Farbstoff
-        { item = 2320,  count = 1 },                     -- Grober Faden
-        { item = 2604,  count = 1 },                     -- Roter Farbstoff
+    { profession = 197, items = {                        -- Tailoring
+        { item = 6260,  count = 1 },                     -- Blue Dye
+        { item = 2320,  count = 1 },                     -- Shiny Bauble
+        { item = 2604,  count = 1 },                     -- Red Dye
     }},
-    { profession = 773, items = {                        -- Inschriftenkunde
-        { item = 39354, count = 5 },                     -- Leichtes Pergament
+    { profession = 773, items = {                        -- Inscription
+        { item = 39354, count = 5 },                     -- Light Parchment
     }},
-    { profession = 794, items = {                        -- Archäologie
-        { item = 87535, count = 3 },                     -- Kiste mit fossilen Archäologiefragmenten
+    { profession = 794, items = {                        -- Archeology
+        { item = 87535, count = 3 },                     -- Crate of Fossil Archaeology Fragments
     }}
 }
 --
--- Die Berufsquests auf dem Dunkelmondjahrmarkt, für die Materialien benötigt werden.
--- Nur diese Quests werden als abgeschlossen gespeichert.
---
--- Die Titel stehen in den Lokalisierungsdateien (z.B. ALCTITLE in
--- darkmoonbuy_deDE.lua / darkmoonbuy_enUS.lua). Wichtig: die Schlüssel hier
--- NICHT in Anführungszeichen setzen, sonst wird der Schlüsselname selbst
--- ausgegeben. Die Sprachdateien müssen vor dieser Datei geladen werden –
--- das regelt locales\Locales.xml und die Reihenfolge in DarkmoonBuy.toc.
+-- The profession quests at the Darkmoon Faire that require materials.
+-- Only these quests are saved as completed.
 --
 ns.QUESTS = {
-    { id = 29506, title = ALCTITLE },          -- Alchemie
-    { id = 29515, title = INSCRIBTITLE },      -- Inschriftenkunde
-    { id = 29509, title = COOKTITLE },         -- Kochen
-    { id = 29517, title = LEATHERTITLE },      -- Lederverarbeitung
-    { id = 29520, title = TAILORTITLE },       -- Schneiderei
-    { id = 29507, title = ARCHTITLE },         -- Archäologie
+    { id = 29506, title = ALCTITLE },          -- Alchemy
+    { id = 29515, title = INSCRIBTITLE },      -- Inscription
+    { id = 29509, title = COOKTITLE },         -- Cooking
+    { id = 29517, title = LEATHERTITLE },      -- Letherworking
+    { id = 29520, title = TAILORTITLE },       -- Tailoring
+    { id = 29507, title = ARCHTITLE },         -- Archeology
 }

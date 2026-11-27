@@ -23,3 +23,5 @@ Damit der Button nicht ständig rumnervt, wird er nicht angezeigt, wenn die Beru
 ## und sonst so (AKA Developer Tools)
 Im Moment noch nicht implementiert
 * Übergabe des nächsten Händlers an TomTom.
+
+Und zum Schluss noch ein herzliches Dankeschön an Carsti29 fürs Beta-Testing, für seine unermüdlichen Versuche, alles kaputtzukriegen, und für die zusätzlichen Feature-Wünsche. :)

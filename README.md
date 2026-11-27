@@ -24,3 +24,6 @@ To keep the button from getting in your way, it is not shown if the profession q
 ## And everything else (AKA Developer Tools)
 Not yet implemented:
 * Passing the next vendor to TomTom.
+
+And finally... 
+Many thanks to Carsti29 for beta-testing, giving his best to breaking things, and pestering with additional feature requests. :)
